@@ -1,0 +1,1656 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Avance de registros del webinar One Storage.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2300707E'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial' font-size='14' font-weight='700' fill='white' text-anchor='middle'%3EOS%3C/text%3E%3C/svg%3E">
+<style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<script>window.__PANEL_WEB__ = {
+  "hoja": "1thV_Pb10TSE495xcYqfC75C68F38rQe7pbw82XmuVTA",
+  "gids": {
+    "General": "1681182596",
+    "Registros": "1808037740",
+    "Campañas": "1706737363",
+    "Duplicados": "144632605",
+    "Difusiones": "2073372722"
+  },
+  "publico": false,
+  "soloPanel": false,
+  "recortar": false,
+  "intervalo": 60000,
+  "overrides": {
+    "contarCampanas": true,
+    "objetivoRegistros": 760,
+    "sesgo": {
+      "Alejandra May": 114,
+      "Ana Hernández": 152,
+      "Arlette Zuñiga": 114,
+      "Edwin Euceda": 114,
+      "Fernando Alcaraz": 114,
+      "Ricardo Maza": 152
+    },
+    "updatedAt": 1788550382236
+  }
+};</script>
+</head>
+<body>
+<title>Panel Webinar One Storage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ── tokens ─────────────────────────────────────────────────────────── */
+:root{
+  --ground:#EDF0F0; --surface:#FFFFFF; --surface-2:#F6F8F8; --surface-3:#EAEFEF;
+  --ink:#101618; --ink-2:#3D4A4D; --muted:#627174;
+  --line:#DBE2E2; --line-strong:#C3CDCE;
+  --accent:#00707E; --accent-ink:#00565F; --accent-soft:#E0EFF0; --on-accent:#FFFFFF;
+  --good:#17795E; --good-soft:#E2F0EB;
+  --warn:#9E6100; --warn-soft:#F6EDDD;
+  --crit:#B3261E; --crit-soft:#F7E5E3;
+  --c1:#008B9E; --c2:#C05621; --c3:#6D5CA8; --c4:#7E8B2E;
+  --track:#E3E9E9;
+  --shadow:0 1px 2px rgba(16,22,24,.05), 0 8px 24px -16px rgba(16,22,24,.28);
+  --radius:10px;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0B1012; --surface:#12181B; --surface-2:#182024; --surface-3:#1E282C;
+    --ink:#E9EEEE; --ink-2:#C0CBCC; --muted:#8FA0A3;
+    --line:#232D31; --line-strong:#354347;
+    --accent:#2FAEBF; --accent-ink:#7FD3DE; --accent-soft:#122E35; --on-accent:#06181C;
+    --good:#34A47D; --good-soft:#102A22;
+    --warn:#D2A03A; --warn-soft:#2B2413;
+    --crit:#E0685C; --crit-soft:#2E1815;
+    --c1:#1FA0B2; --c2:#D9743A; --c3:#9083CE; --c4:#8B9A3E;
+    --track:#212B2F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0B1012; --surface:#12181B; --surface-2:#182024; --surface-3:#1E282C;
+  --ink:#E9EEEE; --ink-2:#C0CBCC; --muted:#8FA0A3;
+  --line:#232D31; --line-strong:#354347;
+  --accent:#2FAEBF; --accent-ink:#7FD3DE; --accent-soft:#122E35; --on-accent:#06181C;
+  --good:#34A47D; --good-soft:#102A22;
+  --warn:#D2A03A; --warn-soft:#2B2413;
+  --crit:#E0685C; --crit-soft:#2E1815;
+  --c1:#1FA0B2; --c2:#D9743A; --c3:#9083CE; --c4:#8B9A3E;
+  --track:#212B2F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.012em}
+a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01ms !important; transition-duration:.01ms !important}}
+
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{
+  font-family:var(--display); font-size:10.5px; font-weight:700;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--muted);
+}
+
+/* ── shell ──────────────────────────────────────────────────────────── */
+.app{display:grid; grid-template-columns:236px minmax(0,1fr); min-height:100vh}
+
+.rail{
+  background:var(--surface); border-right:1px solid var(--line);
+  display:flex; flex-direction:column; gap:22px; padding:20px 14px;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.brand{display:flex; gap:10px; align-items:flex-start; padding:2px 8px 0}
+.brand-mark{
+  width:30px; height:30px; flex:none; border-radius:7px; background:var(--accent);
+  color:var(--on-accent); font-family:var(--display); font-weight:800; font-size:13px;
+  display:grid; place-items:center; letter-spacing:-.02em;
+}
+.brand-name{font-family:var(--display); font-weight:700; font-size:14px; line-height:1.25}
+.brand-sub{font-size:11.5px; color:var(--muted); line-height:1.3}
+
+.nav{display:flex; flex-direction:column; gap:2px}
+.nav-group{padding:0 8px 6px}
+.nav-btn{
+  display:flex; align-items:center; gap:9px; width:100%; text-align:left;
+  padding:8px 10px; border:0; border-radius:7px; background:transparent;
+  color:var(--ink-2); font:500 14px/1.2 var(--body); cursor:pointer;
+}
+.nav-btn:hover{background:var(--surface-2); color:var(--ink)}
+.nav-btn[aria-current="true"]{background:var(--accent-soft); color:var(--accent-ink); font-weight:600}
+.nav-dot{width:7px; height:7px; border-radius:2px; flex:none; background:var(--line-strong)}
+.nav-btn[aria-current="true"] .nav-dot{background:var(--accent)}
+.nav-count{margin-left:auto; font:500 11.5px/1 var(--mono); color:var(--muted); font-variant-numeric:tabular-nums}
+
+.rail-foot{margin-top:auto; padding:12px 8px 0; border-top:1px solid var(--line); font-size:11.5px; color:var(--muted)}
+.rail-foot a{display:block; margin-top:6px; font-weight:600}
+
+.main{min-width:0; display:flex; flex-direction:column}
+.topbar{
+  position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:16px; padding:14px 26px;
+}
+.topbar h1{font-size:19px; font-weight:700}
+.topbar .sub{font-size:12.5px; color:var(--muted); margin-top:1px}
+.topbar-actions{margin-left:auto; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+
+.live{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 10px 5px 8px;
+  border:1px solid var(--line); border-radius:99px; background:var(--surface);
+  font:500 12px/1 var(--body); color:var(--ink-2); white-space:nowrap;
+}
+.live b{font:500 12px/1 var(--mono); font-variant-numeric:tabular-nums; color:var(--ink)}
+.pulse{width:8px; height:8px; border-radius:50%; background:var(--good); flex:none; position:relative}
+.pulse::after{
+  content:""; position:absolute; inset:-4px; border-radius:50%;
+  border:1px solid var(--good); opacity:0; animation:ping 2.4s ease-out infinite;
+}
+@keyframes ping{0%{transform:scale(.5); opacity:.7} 100%{transform:scale(1.3); opacity:0}}
+.live[data-state="loading"] .pulse{background:var(--warn)}
+.live[data-state="loading"] .pulse::after{border-color:var(--warn)}
+.live[data-state="error"] .pulse{background:var(--crit)}
+.live[data-state="error"] .pulse::after{border-color:var(--crit)}
+
+.btn{
+  display:inline-flex; align-items:center; gap:7px; padding:7px 13px;
+  border:1px solid var(--line-strong); border-radius:7px; background:var(--surface);
+  color:var(--ink); font:600 13px/1.2 var(--body); cursor:pointer; white-space:nowrap;
+}
+.btn:hover{background:var(--surface-2); border-color:var(--muted)}
+.btn--primary{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+.btn--primary:hover{background:var(--accent-ink); border-color:var(--accent-ink); color:var(--on-accent)}
+.btn--ghost{border-color:transparent; background:transparent; color:var(--muted); font-weight:500}
+.btn--ghost:hover{background:var(--surface-2); color:var(--ink)}
+.btn[disabled]{opacity:.45; cursor:default}
+.btn--chip{padding:5px 11px; font-size:12px; font-weight:600; border-radius:99px; background:var(--accent-soft); border-color:transparent; color:var(--accent-ink)}
+.btn--chip[aria-pressed="false"]{background:var(--surface-2); color:var(--muted); border-color:var(--line)}
+.btn--chip:hover{border-color:var(--accent)}
+
+.content{padding:22px 26px 56px; display:flex; flex-direction:column; gap:18px; max-width:1520px; width:100%}
+
+/* ── banner ─────────────────────────────────────────────────────────── */
+.banner{
+  display:flex; gap:12px; align-items:flex-start; padding:13px 15px;
+  border:1px solid var(--line); border-left:3px solid var(--muted);
+  border-radius:var(--radius); background:var(--surface);
+}
+.banner[data-tone="warn"]{border-left-color:var(--warn); background:var(--warn-soft)}
+.banner[data-tone="crit"]{border-left-color:var(--crit); background:var(--crit-soft)}
+.banner[data-tone="info"]{border-left-color:var(--accent); background:var(--accent-soft)}
+.banner-title{font-family:var(--display); font-weight:700; font-size:13.5px}
+.banner-body{font-size:13px; color:var(--ink-2); margin-top:2px}
+.banner .btn{margin-left:auto; flex:none}
+
+/* ── goal band ──────────────────────────────────────────────────────── */
+.goalband{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.goalband-top{display:grid; grid-template-columns:minmax(230px,300px) minmax(0,1fr); gap:28px; padding:22px 24px}
+@media (max-width:900px){.goalband-top{grid-template-columns:1fr; gap:18px}}
+.hero-num{
+  font-family:var(--display); font-weight:800; font-size:clamp(46px,6vw,68px);
+  line-height:.94; letter-spacing:-.035em; font-variant-numeric:tabular-nums;
+}
+.hero-of{font-size:14px; color:var(--muted); margin-top:8px}
+.hero-of b{color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums}
+.chip{
+  display:inline-flex; align-items:center; gap:6px; margin-top:12px;
+  padding:4px 10px; border-radius:99px; font:600 12px/1.35 var(--body);
+  border:1px solid transparent;
+}
+.chip--good{background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb,var(--good) 30%,transparent)}
+.chip--warn{background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+.chip--crit{background:var(--crit-soft); color:var(--crit); border-color:color-mix(in srgb,var(--crit) 30%,transparent)}
+.chip--mute{background:var(--surface-2); color:var(--muted); border-color:var(--line)}
+.chip svg{flex:none}
+
+.meter-wrap{display:flex; flex-direction:column; justify-content:center; gap:9px; padding-top:6px}
+.meter{position:relative; height:34px; border-radius:6px; background:var(--track); overflow:visible}
+.meter-fill{
+  height:100%; border-radius:6px 4px 4px 6px; background:var(--accent);
+  transition:width .5s cubic-bezier(.22,.61,.36,1); min-width:2px;
+}
+.meter[data-tone="good"] .meter-fill{background:var(--good)}
+.meter[data-tone="warn"] .meter-fill{background:var(--warn)}
+.meter[data-tone="crit"] .meter-fill{background:var(--crit)}
+.meter-mark{position:absolute; top:-7px; bottom:-7px; width:2px; background:var(--ink); border-radius:2px; opacity:.75}
+.meter-mark[data-align="start"]::after{left:0; transform:none}
+.meter-mark[data-align="end"]::after{left:auto; right:0; transform:none}
+.meter-mark::after{
+  content:attr(data-label); position:absolute; top:-19px; left:50%; transform:translateX(-50%);
+  font:500 11px/1 var(--mono); color:var(--ink-2); white-space:nowrap;
+  background:var(--surface); padding:2px 5px; border-radius:4px;
+}
+.meter-scale{display:flex; justify-content:space-between; font:500 11.5px/1 var(--mono); color:var(--muted)}
+.meter-split{display:flex; height:100%; border-radius:6px; overflow:hidden}
+.meter-seg{height:100%}
+.meter-seg + .meter-seg{border-left:2px solid var(--surface)}
+
+.goalband-facts{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  border-top:1px solid var(--line); background:var(--surface-2);
+}
+@media (max-width:760px){.goalband-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{padding:13px 24px; border-left:1px solid var(--line)}
+.fact:first-child{border-left:0}
+.fact-v{font-family:var(--display); font-weight:700; font-size:22px; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.15}
+.fact-l{font-size:12px; color:var(--muted); margin-top:1px}
+
+/* ── tiles ──────────────────────────────────────────────────────────── */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px}
+.tile{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:15px 16px 14px; display:flex; flex-direction:column; gap:2px;
+}
+.tile-v{font-family:var(--display); font-weight:700; font-size:30px; letter-spacing:-.03em; font-variant-numeric:tabular-nums; line-height:1.05}
+.tile-l{font-size:13px; color:var(--ink-2)}
+.tile-n{font-size:12px; color:var(--muted); margin-top:5px}
+.tile-rail{height:3px; border-radius:2px; background:var(--track); margin-top:9px; overflow:hidden}
+.tile-rail i{display:block; height:100%; border-radius:2px; background:var(--accent)}
+
+/* ── panels ─────────────────────────────────────────────────────────── */
+.grid2{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:12px; align-items:start}
+@media (max-width:1080px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.panel-head{display:flex; align-items:baseline; gap:10px; padding:15px 18px 10px}
+.panel-head h2{font-size:15px; font-weight:700}
+.panel-head .note{margin-left:auto; font-size:11.5px; color:var(--muted); text-align:right}
+.panel-body{padding:4px 18px 18px}
+.panel-body.flush{padding:0 0 6px}
+
+/* advisor rows */
+.arow{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,2.2fr) 118px; gap:14px; align-items:center; padding:9px 18px}
+.arow + .arow{border-top:1px solid var(--line)}
+.arow:hover{background:var(--surface-2)}
+.arow-name{font-size:13.5px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.arow-bar{position:relative; height:16px; background:var(--track); border-radius:4px}
+.arow-bar i{display:block; height:100%; border-radius:4px; background:var(--c1); min-width:0; transition:width .45s ease}
+.arow-bar .tick{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink-2); opacity:.55; border-radius:2px}
+.arow-vals{font:500 12.5px/1 var(--mono); color:var(--ink-2); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap}
+.arow-vals b{color:var(--ink); font-weight:600; font-size:14px}
+.arow-vals .pct{display:inline-block; min-width:44px; color:var(--muted)}
+.arow-head{display:grid; grid-template-columns:minmax(120px,1.1fr) minmax(0,2.2fr) 118px; gap:14px; padding:6px 18px 8px; border-bottom:1px solid var(--line)}
+.arow-head span:last-child{text-align:right}
+
+/* simple bars */
+.bars{display:flex; flex-direction:column; gap:10px; padding-top:6px}
+.bar{display:grid; grid-template-columns:minmax(96px,auto) minmax(0,1fr) 54px; gap:11px; align-items:center}
+.bar-l{font-size:13px; color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.bar-t{height:14px; background:var(--track); border-radius:4px; overflow:hidden}
+.bar-t i{display:block; height:100%; border-radius:4px; background:var(--c1)}
+.bar-v{font:500 12.5px/1 var(--mono); font-variant-numeric:tabular-nums; text-align:right; color:var(--ink)}
+
+.legend{display:flex; flex-wrap:wrap; gap:12px; padding:12px 0 2px; font-size:12px; color:var(--ink-2)}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.swatch{width:10px; height:10px; border-radius:3px; flex:none}
+
+.split{height:26px; display:flex; border-radius:6px; overflow:hidden; background:var(--track)}
+.split i{height:100%; display:grid; place-items:center; font:600 11.5px/1 var(--mono); color:#fff; min-width:2px}
+.split i + i{border-left:2px solid var(--surface)}
+
+/* info list */
+.dl{display:grid; grid-template-columns:auto minmax(0,1fr); gap:9px 18px; font-size:13.5px; align-items:baseline}
+.dl dt{color:var(--muted); font-size:12px; white-space:nowrap}
+.dl dd{margin:0; color:var(--ink); overflow-wrap:anywhere}
+
+/* ── tables ─────────────────────────────────────────────────────────── */
+.tbar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:14px 18px; border-bottom:1px solid var(--line)}
+.tbar h2{font-size:15px; font-weight:700}
+.tbar .count{font:500 12px/1 var(--mono); color:var(--muted); font-variant-numeric:tabular-nums}
+.search{
+  margin-left:auto; display:flex; align-items:center; gap:7px; padding:6px 11px;
+  border:1px solid var(--line-strong); border-radius:7px; background:var(--surface-2); min-width:210px;
+}
+.search input{border:0; background:transparent; color:var(--ink); font:400 13px/1.3 var(--body); width:100%; outline:none}
+.search input::placeholder{color:var(--muted)}
+
+.tscroll{overflow-x:auto; overflow-y:auto; max-height:calc(100vh - 250px)}
+table.data{border-collapse:separate; border-spacing:0; width:100%; font-size:12.5px}
+table.data th{
+  position:sticky; top:0; z-index:2; background:var(--surface-3); color:var(--ink-2);
+  font:700 10.5px/1.3 var(--display); letter-spacing:.07em; text-transform:uppercase;
+  text-align:left; padding:9px 12px; white-space:nowrap; border-bottom:1px solid var(--line-strong);
+}
+table.data th:first-child, table.data td:first-child{padding-left:18px}
+table.data td{
+  padding:8px 12px; border-bottom:1px solid var(--line); color:var(--ink-2);
+  white-space:nowrap; max-width:340px; overflow:hidden; text-overflow:ellipsis; vertical-align:top;
+}
+table.data td.n{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink)}
+table.data tbody tr:hover td{background:var(--surface-2)}
+.tfoot{padding:12px 18px; display:flex; align-items:center; gap:12px; font-size:12.5px; color:var(--muted)}
+
+.empty{padding:44px 18px; text-align:center; color:var(--muted); font-size:13.5px}
+.empty strong{display:block; font-family:var(--display); font-size:15px; color:var(--ink); margin-bottom:5px}
+
+/* ── skeleton ───────────────────────────────────────────────────────── */
+.sk{background:var(--track); border-radius:5px; color:transparent !important; display:inline-block; min-width:48px; animation:sh 1.5s ease-in-out infinite}
+@keyframes sh{0%,100%{opacity:.55} 50%{opacity:.95}}
+
+/* ── drawer ─────────────────────────────────────────────────────────── */
+.scrim{position:fixed; inset:0; background:rgba(8,14,16,.42); z-index:40}
+.drawer{
+  position:fixed; top:0; right:0; bottom:0; width:min(440px,100%); z-index:41;
+  background:var(--surface); border-left:1px solid var(--line);
+  display:flex; flex-direction:column; box-shadow:-24px 0 48px -32px rgba(0,0,0,.5);
+}
+.drawer-head{padding:18px 20px 14px; border-bottom:1px solid var(--line); display:flex; align-items:flex-start; gap:12px}
+.drawer-head h2{font-size:16px; font-weight:700}
+.drawer-head p{margin:3px 0 0; font-size:12.5px; color:var(--muted)}
+.drawer-body{padding:18px 20px; overflow-y:auto; display:flex; flex-direction:column; gap:18px; flex:1}
+.drawer-foot{padding:14px 20px; border-top:1px solid var(--line); display:flex; gap:9px; align-items:center; background:var(--surface-2)}
+.field{display:flex; flex-direction:column; gap:5px}
+.field label{font:600 12.5px/1.3 var(--body); color:var(--ink)}
+.field .hint{font:400 11.5px/1.35 var(--body); color:var(--muted)}
+.field input[type=number], .field input[type=date]{
+  padding:9px 11px; border:1px solid var(--line-strong); border-radius:7px;
+  background:var(--surface-2); color:var(--ink); font:500 14px/1.2 var(--body);
+  font-variant-numeric:tabular-nums; width:100%;
+}
+.field input:focus{outline:2px solid var(--accent); outline-offset:-1px; border-color:var(--accent)}
+.check{display:flex; gap:9px; align-items:flex-start; font-size:13.5px}
+.check input{margin-top:3px; accent-color:var(--accent); width:15px; height:15px}
+.sesgo-grid{display:flex; flex-direction:column; gap:8px}
+.sesgo-row{display:grid; grid-template-columns:minmax(0,1fr) 92px; gap:10px; align-items:center}
+.sesgo-row span{font-size:13px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.sesgo-row input{padding:6px 9px; font-size:13px}
+.divider{height:1px; background:var(--line)}
+.saved{font-size:12.5px; color:var(--good); font-weight:600; margin-left:auto}
+
+/* ── tooltip ────────────────────────────────────────────────────────── */
+#tip{
+  position:fixed; z-index:60; pointer-events:none; max-width:260px;
+  background:var(--ink); color:var(--ground); padding:7px 10px; border-radius:6px;
+  font:500 12px/1.4 var(--body); box-shadow:0 8px 20px -10px rgba(0,0,0,.6);
+}
+#tip b{font-family:var(--mono); font-variant-numeric:tabular-nums}
+
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  .rail{position:static; height:auto; flex-direction:row; align-items:center; overflow-x:auto; border-right:0; border-bottom:1px solid var(--line); gap:14px; padding:12px 16px}
+  .rail-foot{display:none}
+  .nav{flex-direction:row; gap:4px}
+  .nav-group{display:none}
+  .content{padding:16px 16px 48px}
+  .topbar{padding:12px 16px}
+}
+</style>
+
+<div class="app">
+  <aside class="rail">
+    <div class="brand">
+      <div class="brand-mark">OS</div>
+      <div>
+        <div class="brand-name">Webinar One&nbsp;Storage</div>
+        <div class="brand-sub">8 oct 2026 · 7:30&nbsp;PM</div>
+      </div>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="Vistas">
+      <div class="nav-group eyebrow">Resumen</div>
+      <button class="nav-btn" data-view="panel" aria-current="true"><i class="nav-dot"></i>Panel</button>
+      <div class="nav-group eyebrow" style="padding-top:12px">Hojas del archivo</div>
+      <button class="nav-btn" data-view="General"><i class="nav-dot"></i>General<span class="nav-count" data-count="General">—</span></button>
+      <button class="nav-btn" data-view="Registros"><i class="nav-dot"></i>Registros<span class="nav-count" data-count="Registros">—</span></button>
+      <button class="nav-btn" data-view="Campañas"><i class="nav-dot"></i>Campañas<span class="nav-count" data-count="Campañas">—</span></button>
+      <button class="nav-btn" data-view="Duplicados"><i class="nav-dot"></i>Duplicados<span class="nav-count" data-count="Duplicados">—</span></button>
+      <button class="nav-btn" data-view="Difusiones"><i class="nav-dot"></i>Difusiones<span class="nav-count" data-count="Difusiones">—</span></button>
+    </nav>
+
+    <div class="rail-foot">
+      Fuente única de datos: la hoja de cálculo. Este panel solo la lee.
+      <a href="https://docs.google.com/spreadsheets/d/1thV_Pb10TSE495xcYqfC75C68F38rQe7pbw82XmuVTA/edit" target="_blank" rel="noopener">Abrir Google Sheets →</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <h1 id="viewTitle">Panel</h1>
+        <div class="sub" id="viewSub">Registro Webinar One Storage | WA (Respuestas)</div>
+      </div>
+      <div class="topbar-actions">
+        <span class="live" id="live" data-state="loading">
+          <i class="pulse"></i><span id="liveText">Conectando…</span>
+        </span>
+        <button class="btn" id="btnRefresh" type="button">Actualizar</button>
+        <button class="btn btn--primary" id="btnGoals" type="button">Objetivos</button>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+      <div id="bannerSlot"></div>
+
+      <section class="goalband" id="goalband">
+        <div class="goalband-top">
+          <div>
+            <div class="eyebrow">Avance hacia el objetivo</div>
+            <div class="hero-num num"><span class="sk">000</span></div>
+            <div class="hero-of">de <b class="sk">000</b> registros</div>
+            <div><span class="chip chip--mute">Cargando datos de la hoja…</span></div>
+          </div>
+          <div class="meter-wrap">
+            <div class="meter" data-tone="mute"><div class="meter-fill" style="width:0%"></div></div>
+            <div class="meter-scale"><span>0</span><span class="sk">000</span></div>
+            <div class="legend" id="goalLegend"></div>
+          </div>
+        </div>
+        <div class="goalband-facts">
+          <div class="fact"><div class="fact-v num sk">0</div><div class="fact-l">Faltan</div></div>
+          <div class="fact"><div class="fact-v num sk">0</div><div class="fact-l">Días restantes</div></div>
+          <div class="fact"><div class="fact-v num sk">0</div><div class="fact-l">Ritmo requerido / día</div></div>
+          <div class="fact"><div class="fact-v num sk">0</div><div class="fact-l">Proyección al webinar</div></div>
+        </div>
+      </section>
+
+      <section class="tiles" id="tiles">
+        <div class="tile"><div class="tile-v sk">0</div><div class="tile-l">Registros del formulario</div><div class="tile-n">Hoja Registros</div></div>
+        <div class="tile"><div class="tile-v sk">0</div><div class="tile-l">Leads de campañas</div><div class="tile-n">Campañas + Duplicados</div></div>
+        <div class="tile"><div class="tile-v sk">0</div><div class="tile-l">Difusiones registradas</div><div class="tile-n">Hoja Difusiones</div></div>
+        <div class="tile"><div class="tile-v sk">0</div><div class="tile-l">Asesores activos</div><div class="tile-n">Con al menos un registro</div></div>
+      </section>
+
+      <section class="panel" id="asesoresPanel">
+        <div class="panel-head">
+          <h2>Registros por asesor</h2>
+          <div class="note">Barra&nbsp;=&nbsp;registros · marca&nbsp;=&nbsp;objetivo asignado</div>
+        </div>
+        <div class="panel-body flush" id="asesoresBody">
+          <div class="empty">Leyendo la hoja General…</div>
+        </div>
+      </section>
+
+      <div class="grid2" id="analytics">
+        <section class="panel">
+          <div class="panel-head"><h2>Respuesta a la difusión</h2><div class="note" data-periodo>Hoja Difusiones</div></div>
+          <div class="panel-body" id="botonBody"><div class="empty">Cargando…</div></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>Origen de los leads</h2><div class="note" data-periodo>Atribución</div></div>
+          <div class="panel-body" id="atribBody"><div class="empty">Cargando…</div></div>
+        </section>
+      </div>
+
+      <div class="grid2">
+        <section class="panel">
+          <div class="panel-head"><h2>Difusiones por asesor</h2><div class="note" data-periodo>Top 8</div></div>
+          <div class="panel-body" id="difAsesorBody"><div class="empty">Cargando…</div></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>Datos del evento</h2></div>
+          <div class="panel-body" id="eventoBody"><div class="empty">Cargando…</div></div>
+        </section>
+      </div>
+    </main>
+
+    <main class="content" id="sheetView" hidden>
+      <section class="panel">
+        <div class="tbar">
+          <h2 id="sheetTitle">Hoja</h2>
+          <span class="count" id="sheetCount">—</span>
+          <button class="btn btn--chip" id="btnPeriodo" type="button" aria-pressed="true" hidden>Solo Septiembre 2026</button>
+          <div class="search">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="4.6" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <input id="sheetSearch" type="search" placeholder="Buscar en esta hoja…" autocomplete="off">
+          </div>
+        </div>
+        <div class="tscroll" id="sheetScroll"><div class="empty">Cargando la hoja…</div></div>
+        <div class="tfoot" id="sheetFoot"></div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<div id="tip" hidden></div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Editar objetivos">
+  <div class="drawer-head">
+    <div>
+      <h2>Objetivos y fechas</h2>
+      <p>Lo que guardes aquí sustituye al valor de la hoja y recalcula todas las métricas al instante.</p>
+    </div>
+    <button class="btn btn--ghost" id="drawerClose" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot">
+    <button class="btn btn--primary" id="btnSave" type="button">Guardar</button>
+    <button class="btn" id="btnReset" type="button">Volver a los valores de la hoja</button>
+    <span class="saved" id="savedMsg" hidden>Guardado</span>
+  </div>
+</aside>
+
+<script>
+(function () {
+  "use strict";
+
+  var FILE_ID = "1thV_Pb10TSE495xcYqfC75C68F38rQe7pbw82XmuVTA";
+  var SHEET_URL = "https://docs.google.com/spreadsheets/d/" + FILE_ID + "/edit";
+  var TABS = ["General", "Registros", "Campañas", "Duplicados", "Difusiones"];
+  var PAUTA_URL = "https://drive.google.com/drive/folders/1fvR0EoybyiaZKPD0770VUOwaCNZNf2U8";
+  var PAUTA_NOMBRE = "WEBINAR PAUTA SEP";
+  // La difusión arranca desde cero en septiembre 2026: el histórico anterior no cuenta.
+  var PERIODO = { key: "septiembre 2026", label: "Septiembre 2026" };
+
+  // Modo estático: la página trae los datos incrustados en vez de leer el conector.
+  var SNAP = (typeof window !== "undefined" && window.__PANEL_SNAPSHOT__) || null;
+  var WEB = (typeof window !== "undefined" && window.__PANEL_WEB__) || null;
+  var ESTATICO = !!SNAP;
+  var PUBLICO = !!((SNAP && SNAP.publico) || (WEB && WEB.publico));
+  var SOLO_PANEL = !!((SNAP && SNAP.soloPanel) || (WEB && WEB.soloPanel));
+  var RECORTAR = !!(WEB && WEB.recortar);
+
+  var nf = new Intl.NumberFormat("es-MX");
+  var nf1 = new Intl.NumberFormat("es-MX", { maximumFractionDigits: 1 });
+  var dfLong = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "long", year: "numeric" });
+  var dfHora = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+
+  var state = {
+    view: "panel",
+    tabs: {},          // name -> {header:[], rows:[[]], cols:n}
+    sheetCfg: null,    // valores leídos de la hoja General
+    overrides: {},     // valores editados por el usuario
+    storeMode: "none", // db | local | none
+    dbRef: null,
+    lastAt: 0,
+    lastCached: false,
+    status: "loading", // loading | live | error
+    banner: null,
+    search: "",
+    soloPeriodo: true,
+    atrasado: false,
+    limit: 200,
+    retried: false
+  };
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var el = function (t, c, txt) {
+    var n = document.createElement(t);
+    if (c) n.className = c;
+    if (txt != null) n.textContent = txt;
+    return n;
+  };
+  function esc(s) { return String(s == null ? "" : s); }
+  function norm(s) {
+    return esc(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, " ").trim();
+  }
+
+  /* ── parseo del markdown que devuelve el conector ──────────────── */
+
+  function parseCSV(text) {
+    var rows = [], row = [], cur = "", q = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text.charAt(i);
+      if (q) {
+        if (c === '"') { if (text.charAt(i + 1) === '"') { cur += '"'; i++; } else q = false; }
+        else cur += c;
+        continue;
+      }
+      if (c === '"') { q = true; continue; }
+      if (c === ",") { row.push(cur); cur = ""; continue; }
+      if (c === "\r") continue;
+      if (c === "\n") { row.push(cur); rows.push(row); row = []; cur = ""; continue; }
+      cur += c;
+    }
+    if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+    while (rows.length && rows[rows.length - 1].every(function (x) { return x.trim() === ""; })) rows.pop();
+    return rows.map(function (r) { return r.map(function (x) { return x.trim(); }); });
+  }
+
+  // Una vista pública no debe cargar en memoria ni pintar datos personales.
+  var COLUMNAS_PUBLICAS = {
+    Registros: [/asesor/i],
+    "Campañas": [],
+    Duplicados: [],
+    Difusiones: [/^mes\b/i, /^bot[oó]n$/i, /^atribucion$/i, /asesor asignado/i]
+  };
+
+  function recortarPII(grids) {
+    var out = {};
+    Object.keys(grids).forEach(function (nombre) {
+      var grid = grids[nombre], permitidas = COLUMNAS_PUBLICAS[nombre];
+      if (!permitidas || !grid || !grid.length) { out[nombre] = grid; return; }
+      var conservar = {};
+      grid[0].forEach(function (h, i) {
+        if (permitidas.some(function (re) { return re.test(esc(h).trim()); })) conservar[i] = true;
+      });
+      out[nombre] = grid.map(function (fila, r) {
+        if (r === 0) return fila.slice();
+        return fila.map(function (v, c) {
+          if (conservar[c]) return v;
+          if (c === 0) {
+            var t = esc(v).trim();
+            return t === "" || t.charAt(0) === "#" ? t : "1";
+          }
+          return "";
+        });
+      });
+    });
+    return out;
+  }
+
+  function usedWidth(grid) {
+    var w = 0;
+    grid.forEach(function (r) {
+      for (var i = r.length - 1; i >= 0; i--) { if (r[i] !== "") { if (i + 1 > w) w = i + 1; break; } }
+    });
+    return Math.max(w, 1);
+  }
+
+  function toTable(grid) {
+    if (!grid || !grid.length) return { header: [], rows: [], cols: 0 };
+    var w = usedWidth(grid);
+    var header = grid[0].slice(0, w);
+    var rows = grid.slice(1).map(function (r) {
+      var o = r.slice(0, w);
+      while (o.length < w) o.push("");
+      return o;
+    }).filter(function (r) { return r.some(function (c) { return c !== ""; }); });
+    return { header: header, rows: rows, cols: w };
+  }
+
+  function mesCols(t) {
+    var idx = [];
+    (t.header || []).forEach(function (h, i) { if (/^mes\b/i.test(h)) idx.push(i); });
+    return idx;
+  }
+
+  // Filas de una hoja tal como se muestran: Difusiones se recorta al periodo vigente.
+  function viewRows(name) {
+    var t = state.tabs[name];
+    if (!t) return [];
+    if (name !== "Difusiones" || !state.soloPeriodo) return t.rows;
+    var idx = mesCols(t);
+    if (!idx.length) return t.rows;
+    return t.rows.filter(function (r) {
+      for (var i = 0; i < idx.length; i++) {
+        if (norm(r[idx[i]]).indexOf(PERIODO.key) >= 0) return true;
+      }
+      return false;
+    });
+  }
+
+  function isRealLead(row) {
+    var id = esc(row[0]).trim();
+    return id !== "" && id !== "#N/A" && id !== "#REF!" && id.indexOf("#") !== 0;
+  }
+
+  /* ── fechas ────────────────────────────────────────────────────── */
+
+  function parseSheetDate(s) {
+    var m = /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})$/.exec(esc(s).trim());
+    if (!m) return null;
+    var d = +m[1], mo = +m[2], y = +m[3];
+    if (y < 100) y += 2000;
+    var dt = new Date(y, mo - 1, d);
+    return isNaN(dt.getTime()) ? null : dt;
+  }
+  function toISO(d) {
+    if (!d) return "";
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  }
+  function fromISO(s) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(esc(s));
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+  function daysBetween(a, b) {
+    if (!a || !b) return null;
+    return Math.round((b - a) / 86400000);
+  }
+  function today() { var d = new Date(); d.setHours(0, 0, 0, 0); return d; }
+
+  /* ── lectura de la hoja General ────────────────────────────────── */
+
+  function readGeneral(grid) {
+    var cfg = {
+      anio: "", objetivo: null, fechaInicio: null, fechaWebinar: null,
+      asesores: [], evento: "", form: "", monitor: "", videos: [], objetivoPorAsesor: null
+    };
+    if (!grid || !grid.length) return cfg;
+    var r0 = grid[0] || [];
+    cfg.anio = esc(r0[0]).trim();
+
+    var r1 = grid[1] || [];
+    var k = parseFloat(esc(r1[10]).replace(/[^\d.\-]/g, ""));
+    if (isFinite(k)) cfg.objetivo = k;
+    cfg.fechaInicio = parseSheetDate(r1[4]);
+    cfg.fechaWebinar = parseSheetDate(r1[6]);
+
+    for (var i = 1; i < grid.length; i++) {
+      var row = grid[i] || [];
+      var name = esc(row[0]).trim();
+      if (!name) continue;
+      if (/^(asesores|campañas|día del evento|formulario|link para|videos|webinar)/i.test(name)) break;
+      var sesgo = parseFloat(esc(row[3]).replace(/[^\d.\-]/g, ""));
+      var obj = parseFloat(esc(row[2]).replace(/[^\d.\-]/g, ""));
+      cfg.asesores.push({ nombre: name, sesgo: isFinite(sesgo) ? sesgo : null, objHoja: isFinite(obj) ? obj : null });
+    }
+    if (cfg.asesores.length && cfg.asesores[0].objHoja != null) cfg.objetivoPorAsesor = cfg.asesores[0].objHoja;
+
+    for (var j = 0; j < grid.length; j++) {
+      var a = esc((grid[j] || [])[0]).trim();
+      if (!a) continue;
+      if (/^Día del evento/i.test(a)) cfg.evento = a;
+      else if (/^https:\/\/forms\.gle/i.test(a)) cfg.form = a;
+      else if (/\(Respuestas\)/i.test(a)) cfg.monitor = a;
+      else if (/^WEBINAR /i.test(a)) cfg.videos.push(a);
+    }
+    return cfg;
+  }
+
+  /* ── configuración efectiva (hoja + overrides) ─────────────────── */
+
+  function cfg() {
+    var s = state.sheetCfg || {};
+    var o = state.overrides || {};
+    var objetivo = (typeof o.objetivoRegistros === "number" && o.objetivoRegistros > 0)
+      ? o.objetivoRegistros : (s.objetivo || 0);
+    var ini = o.fechaInicio ? fromISO(o.fechaInicio) : (s.fechaInicio || null);
+    var fin = o.fechaWebinar ? fromISO(o.fechaWebinar) : (s.fechaWebinar || null);
+    var sesgoOv = o.sesgo || {};
+    return {
+      objetivo: objetivo,
+      fechaInicio: ini,
+      fechaWebinar: fin,
+      contarCampanas: o.contarCampanas === false ? false : true,
+      objetivoDe: function (nombre) {
+        if (typeof sesgoOv[nombre] === "number") return sesgoOv[nombre];
+        var a = (s.asesores || []).filter(function (x) { return x.nombre === nombre; })[0];
+        if (a && a.sesgo != null) return a.sesgo;
+        if (a && a.objHoja != null) return Math.round(a.objHoja);
+        return null;
+      },
+      overridden: {
+        objetivo: typeof o.objetivoRegistros === "number",
+        fechaInicio: !!o.fechaInicio,
+        fechaWebinar: !!o.fechaWebinar,
+        sesgo: Object.keys(sesgoOv).length > 0
+      }
+    };
+  }
+
+  /* ── métricas ──────────────────────────────────────────────────── */
+
+  function metrics() {
+    var c = cfg();
+    var reg = state.tabs["Registros"] || { header: [], rows: [] };
+    var camp = state.tabs["Campañas"] || { rows: [] };
+    var dup = state.tabs["Duplicados"] || { rows: [] };
+    var dif = state.tabs["Difusiones"] || { header: [], rows: [] };
+
+    var colAsesor = reg.header.reduce(function (acc, h, i) {
+      return /asesor/i.test(h) ? i : acc;
+    }, -1);
+
+    var porAsesor = {};
+    var registros = reg.rows.length;
+    reg.rows.forEach(function (r) {
+      var key = colAsesor >= 0 ? norm(r[colAsesor]) : "";
+      porAsesor[key] = (porAsesor[key] || 0) + 1;
+    });
+
+    var leadsCamp = camp.rows.filter(isRealLead).length + dup.rows.filter(isRealLead).length;
+    var difusiones = viewRows("Difusiones").filter(function (r) { return esc(r[0]).trim() !== ""; }).length;
+
+    var avance = registros + (c.contarCampanas ? leadsCamp : 0);
+    var faltan = Math.max(0, c.objetivo - avance);
+
+    var t = today();
+    var diasTotales = daysBetween(c.fechaInicio, c.fechaWebinar);
+    var transcurridos = c.fechaInicio ? Math.max(0, Math.min(diasTotales || 0, daysBetween(c.fechaInicio, t))) : null;
+    var restantes = c.fechaWebinar ? Math.max(0, daysBetween(t, c.fechaWebinar)) : null;
+
+    var esperado = (diasTotales && transcurridos != null && diasTotales > 0)
+      ? c.objetivo * (transcurridos / diasTotales) : null;
+    var ritmoReq = (restantes != null) ? faltan / Math.max(1, restantes) : null;
+    var ritmoActual = (transcurridos != null && transcurridos > 0) ? avance / transcurridos : null;
+    var proyeccion = (ritmoActual != null && diasTotales) ? Math.round(ritmoActual * diasTotales) : null;
+
+    var tone = "mute";
+    if (esperado != null && c.objetivo > 0) {
+      if (avance >= esperado) tone = "good";
+      else if (avance >= esperado * 0.85) tone = "warn";
+      else tone = "crit";
+    }
+
+    var asesores = (state.sheetCfg && state.sheetCfg.asesores || []).map(function (a) {
+      return { nombre: a.nombre, registros: porAsesor[norm(a.nombre)] || 0, objetivo: c.objetivoDe(a.nombre) };
+    });
+    var conocidos = {};
+    asesores.forEach(function (a) { conocidos[norm(a.nombre)] = true; });
+    var sinAsignar = 0;
+    Object.keys(porAsesor).forEach(function (k) { if (!conocidos[k]) sinAsignar += porAsesor[k]; });
+
+    return {
+      c: c, registros: registros, leadsCamp: leadsCamp, difusiones: difusiones,
+      avance: avance, faltan: faltan, pct: c.objetivo > 0 ? avance / c.objetivo : 0,
+      diasTotales: diasTotales, transcurridos: transcurridos, restantes: restantes,
+      esperado: esperado, ritmoReq: ritmoReq, ritmoActual: ritmoActual, proyeccion: proyeccion,
+      tone: tone, asesores: asesores, sinAsignar: sinAsignar,
+      activos: asesores.filter(function (a) { return a.registros > 0; }).length
+    };
+  }
+
+  function countBy(tab, colMatcher) {
+    var t = state.tabs[tab];
+    if (!t || !t.header.length) return [];
+    var idx = -1;
+    t.header.forEach(function (h, i) { if (idx < 0 && colMatcher.test(h)) idx = i; });
+    if (idx < 0) return [];
+    var m = {};
+    viewRows(tab).forEach(function (r) {
+      var v = esc(r[idx]).trim();
+      if (!v) return;
+      m[v] = (m[v] || 0) + 1;
+    });
+    return Object.keys(m).map(function (k) { return { label: k, value: m[k] }; })
+      .sort(function (a, b) { return b.value - a.value; });
+  }
+
+  /* ── render: panel ─────────────────────────────────────────────── */
+
+  function fmtDate(d) { return d ? dfLong.format(d) : "—"; }
+
+  function renderPanel() {
+    if (!state.sheetCfg) return;
+    var m = metrics();
+    var band = $("#goalband");
+
+    var toneLabel = { good: "En ritmo", warn: "Ligeramente atrás", crit: "Atrás del ritmo", mute: "Sin fechas configuradas" }[m.tone];
+    var chipClass = { good: "chip--good", warn: "chip--warn", crit: "chip--crit", mute: "chip--mute" }[m.tone];
+    var pctW = Math.max(0, Math.min(100, m.pct * 100));
+    var markW = (m.esperado != null && m.c.objetivo > 0) ? Math.max(0, Math.min(100, (m.esperado / m.c.objetivo) * 100)) : null;
+
+    var top = el("div", "goalband-top");
+    var left = el("div");
+    left.appendChild(el("div", "eyebrow", "Avance hacia el objetivo"));
+    left.appendChild(el("div", "hero-num num", nf.format(m.avance)));
+    var of = el("div", "hero-of");
+    of.appendChild(document.createTextNode("de "));
+    of.appendChild(el("b", "", nf.format(m.c.objetivo)));
+    of.appendChild(document.createTextNode(" registros · " + nf1.format(m.pct * 100) + "%"));
+    left.appendChild(of);
+    var chipRow = el("div");
+    var chip = el("span", "chip " + chipClass);
+    chip.appendChild(iconFor(m.tone));
+    var sinArrancar = m.c.fechaInicio && today() < m.c.fechaInicio;
+    chip.appendChild(document.createTextNode(
+      sinArrancar
+        ? "La captación arranca el " + fmtDate(m.c.fechaInicio)
+        : toneLabel + (m.esperado >= 1 ? " · esperado hoy " + nf.format(Math.round(m.esperado)) : "")
+    ));
+    chipRow.appendChild(chip);
+    left.appendChild(chipRow);
+    top.appendChild(left);
+
+    var right = el("div", "meter-wrap");
+    var meter = el("div", "meter");
+    meter.setAttribute("data-tone", m.tone);
+    if (m.c.contarCampanas && m.leadsCamp > 0 && m.c.objetivo > 0) {
+      var split = el("div", "meter-split");
+      var w1 = Math.min(100, (m.registros / m.c.objetivo) * 100);
+      var w2 = Math.min(100 - w1, (m.leadsCamp / m.c.objetivo) * 100);
+      var s1 = el("div", "meter-seg"); s1.style.width = w1 + "%"; s1.style.background = "var(--c1)";
+      s1.setAttribute("data-tip", "Formulario · " + nf.format(m.registros) + " registros");
+      var s2 = el("div", "meter-seg"); s2.style.width = w2 + "%"; s2.style.background = "var(--c2)";
+      s2.setAttribute("data-tip", "Campañas · " + nf.format(m.leadsCamp) + " leads");
+      split.appendChild(s1); split.appendChild(s2);
+      meter.appendChild(split);
+    } else {
+      var fill = el("div", "meter-fill");
+      fill.style.width = pctW + "%";
+      fill.setAttribute("data-tip", nf.format(m.avance) + " de " + nf.format(m.c.objetivo));
+      meter.appendChild(fill);
+    }
+    // La marca de ritmo solo tiene sentido una vez arrancada la captación.
+    if (markW != null && m.esperado >= 1) {
+      var mk = el("div", "meter-mark");
+      mk.style.left = markW + "%";
+      if (markW < 12) mk.setAttribute("data-align", "start");
+      else if (markW > 88) mk.setAttribute("data-align", "end");
+      mk.setAttribute("data-label", "ritmo esperado " + nf.format(Math.round(m.esperado)));
+      meter.appendChild(mk);
+    }
+    right.appendChild(meter);
+    var scale = el("div", "meter-scale");
+    scale.appendChild(el("span", "", "0"));
+    scale.appendChild(el("span", "", nf.format(m.c.objetivo)));
+    right.appendChild(scale);
+
+    var lg = el("div", "legend");
+    if (m.c.contarCampanas && m.leadsCamp > 0) {
+      lg.appendChild(legendItem("var(--c1)", "Formulario · " + nf.format(m.registros)));
+      lg.appendChild(legendItem("var(--c2)", "Campañas · " + nf.format(m.leadsCamp)));
+    }
+    var per = el("span", "", "Periodo: " + fmtDate(m.c.fechaInicio) + " → " + fmtDate(m.c.fechaWebinar));
+    per.style.color = "var(--muted)";
+    lg.appendChild(per);
+    right.appendChild(lg);
+    top.appendChild(right);
+
+    var facts = el("div", "goalband-facts");
+    [
+      [nf.format(m.faltan), "Faltan para el objetivo"],
+      [m.restantes == null ? "—" : nf.format(m.restantes), "Días restantes"],
+      [m.ritmoReq == null ? "—" : nf1.format(m.ritmoReq), "Ritmo requerido / día"],
+      [m.proyeccion == null ? "—" : nf.format(m.proyeccion), "Proyección al webinar"]
+    ].forEach(function (f) {
+      var d = el("div", "fact");
+      d.appendChild(el("div", "fact-v num", f[0]));
+      d.appendChild(el("div", "fact-l", f[1]));
+      facts.appendChild(d);
+    });
+
+    band.textContent = "";
+    band.appendChild(top);
+    band.appendChild(facts);
+
+    // tiles
+    var tiles = $("#tiles");
+    tiles.textContent = "";
+    var tdata = [
+      { v: m.registros, l: "Registros del formulario", n: "Hoja Registros", rail: m.c.objetivo ? m.registros / m.c.objetivo : 0, color: "var(--c1)" },
+      { v: m.leadsCamp, l: "Leads de campañas", n: "Campañas + Duplicados", rail: m.c.objetivo ? m.leadsCamp / m.c.objetivo : 0, color: "var(--c2)" },
+      { v: m.difusiones, l: "Difusiones registradas", n: state.soloPeriodo ? "Hoja Difusiones · " + PERIODO.label : "Hoja Difusiones · histórico completo", rail: 0, color: "var(--c3)" },
+      { v: m.activos + " / " + m.asesores.length, l: "Asesores con registros", n: m.sinAsignar ? nf.format(m.sinAsignar) + " sin asesor reconocido" : "Todos los registros asignados", rail: m.asesores.length ? m.activos / m.asesores.length : 0, color: "var(--c4)" }
+    ];
+    tdata.forEach(function (t) {
+      var d = el("div", "tile");
+      d.appendChild(el("div", "tile-v num", typeof t.v === "number" ? nf.format(t.v) : t.v));
+      d.appendChild(el("div", "tile-l", t.l));
+      d.appendChild(el("div", "tile-n", t.n));
+      if (t.rail > 0) {
+        var rail = el("div", "tile-rail");
+        var i2 = el("i");
+        i2.style.width = Math.max(2, Math.min(100, t.rail * 100)) + "%";
+        i2.style.background = t.color;
+        rail.appendChild(i2);
+        d.appendChild(rail);
+      }
+      tiles.appendChild(d);
+    });
+
+    renderAsesores(m);
+    renderCharts(m);
+    renderEvento(m);
+    updateCounts();
+  }
+
+  function iconFor(tone) {
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "13"); svg.setAttribute("height", "13");
+    svg.setAttribute("viewBox", "0 0 16 16"); svg.setAttribute("aria-hidden", "true");
+    var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    p.setAttribute("fill", "currentColor");
+    if (tone === "good") p.setAttribute("d", "M6.4 11.6 3.2 8.4l1.1-1.1 2.1 2.1 5-5 1.1 1.1z");
+    else if (tone === "crit") p.setAttribute("d", "M8 1.6 15 14H1zM7.3 6v4h1.4V6zm0 5.1v1.4h1.4v-1.4z");
+    else if (tone === "warn") p.setAttribute("d", "M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5m-.7 3h1.4v4.6H7.3zm0 5.7h1.4v1.4H7.3z");
+    else p.setAttribute("d", "M8 1.5A6.5 6.5 0 1 0 8 14.5 6.5 6.5 0 0 0 8 1.5m-.7 3h1.4v1.4H7.3zm0 2.8h1.4v4.2H7.3z");
+    svg.appendChild(p);
+    return svg;
+  }
+
+  function legendItem(color, label) {
+    var s = el("span");
+    var sw = el("i", "swatch");
+    sw.style.background = color;
+    s.appendChild(sw);
+    s.appendChild(document.createTextNode(label));
+    return s;
+  }
+
+  function renderAsesores(m) {
+    var body = $("#asesoresBody");
+    body.textContent = "";
+    if (!m.asesores.length) {
+      body.appendChild(emptyState("Sin asesores en la hoja General", "Agrega los nombres en la columna A de la hoja General y aparecerán aquí."));
+      return;
+    }
+    var head = el("div", "arow-head eyebrow");
+    head.appendChild(el("span", "", "Asesor"));
+    head.appendChild(el("span", "", "Avance contra su objetivo"));
+    head.appendChild(el("span", "", "Reg. / obj."));
+    body.appendChild(head);
+
+    var maxRef = Math.max.apply(null, m.asesores.map(function (a) { return Math.max(a.registros, a.objetivo || 0); }).concat([1]));
+    m.asesores.forEach(function (a) {
+      var row = el("div", "arow");
+      row.appendChild(el("div", "arow-name", a.nombre));
+      var bar = el("div", "arow-bar");
+      var i2 = el("i");
+      i2.style.width = Math.max(0, (a.registros / maxRef) * 100) + "%";
+      bar.appendChild(i2);
+      if (a.objetivo > 0) {
+        var tick = el("div", "tick");
+        tick.style.left = Math.min(100, (a.objetivo / maxRef) * 100) + "%";
+        bar.appendChild(tick);
+      }
+      bar.setAttribute("data-tip", a.nombre + " · " + nf.format(a.registros) + " registros" +
+        (a.objetivo > 0 ? " de " + nf.format(a.objetivo) : " · sin objetivo asignado"));
+      row.appendChild(bar);
+      var vals = el("div", "arow-vals");
+      vals.appendChild(el("b", "", nf.format(a.registros)));
+      vals.appendChild(document.createTextNode(" / " + (a.objetivo > 0 ? nf.format(a.objetivo) : "—") + " "));
+      vals.appendChild(el("span", "pct", a.objetivo > 0 ? nf1.format((a.registros / a.objetivo) * 100) + "%" : "—"));
+      row.appendChild(vals);
+      body.appendChild(row);
+    });
+
+    if (m.sinAsignar > 0) {
+      var extra = el("div", "arow");
+      extra.appendChild(el("div", "arow-name", "Sin asesor reconocido"));
+      var b2 = el("div", "arow-bar");
+      var i3 = el("i"); i3.style.background = "var(--muted)";
+      i3.style.width = Math.max(0, (m.sinAsignar / maxRef) * 100) + "%";
+      b2.appendChild(i3);
+      extra.appendChild(b2);
+      var v2 = el("div", "arow-vals");
+      v2.appendChild(el("b", "", nf.format(m.sinAsignar)));
+      extra.appendChild(v2);
+      body.appendChild(extra);
+    }
+  }
+
+  function barList(items, color, total) {
+    var wrap = el("div", "bars");
+    var max = Math.max.apply(null, items.map(function (i) { return i.value; }).concat([1]));
+    items.forEach(function (it) {
+      var row = el("div", "bar");
+      row.appendChild(el("div", "bar-l", it.label));
+      var t = el("div", "bar-t");
+      var i2 = el("i");
+      i2.style.width = Math.max(1, (it.value / max) * 100) + "%";
+      i2.style.background = it.color || color;
+      t.appendChild(i2);
+      t.setAttribute("data-tip", it.label + " · " + nf.format(it.value) +
+        (total ? " (" + nf1.format((it.value / total) * 100) + "%)" : ""));
+      row.appendChild(t);
+      row.appendChild(el("div", "bar-v", nf.format(it.value)));
+      wrap.appendChild(row);
+    });
+    return wrap;
+  }
+
+  function renderCharts(m) {
+    var per = state.soloPeriodo ? PERIODO.label : "Histórico completo";
+    var notas = ["Hoja Difusiones · " + per, "Atribución · " + per, "Top 8 · " + per];
+    Array.prototype.forEach.call(document.querySelectorAll("[data-periodo]"), function (n, i) {
+      n.textContent = notas[i] || per;
+    });
+
+    var boton = countBy("Difusiones", /^Bot[oó]n$/i);
+    var bb = $("#botonBody");
+    bb.textContent = "";
+    if (!boton.length) {
+      bb.appendChild(emptyState("Todavía no hay respuestas de " + PERIODO.label,
+        state.soloPeriodo
+          ? "La difusión arranca desde cero este periodo. Las filas anteriores a " + PERIODO.label + " quedan fuera del conteo."
+          : "Cuando la hoja Difusiones reciba filas, verás aquí el desglose por botón."));
+    } else {
+      var totalB = boton.reduce(function (s, x) { return s + x.value; }, 0);
+      bb.appendChild(barList(boton, "var(--c1)", totalB));
+      var n = el("div", "tile-n", nf.format(totalB) + " respuestas registradas");
+      n.style.marginTop = "12px";
+      bb.appendChild(n);
+    }
+
+    var atrib = countBy("Difusiones", /^Atribucion$/i);
+    var ab = $("#atribBody");
+    ab.textContent = "";
+    if (!atrib.length) {
+      ab.appendChild(emptyState("Sin datos de atribución", "Todavía no hay filas de " + PERIODO.label + " con origen registrado."));
+    } else {
+      var totalA = atrib.reduce(function (s, x) { return s + x.value; }, 0);
+      var palette = ["var(--c1)", "var(--c2)", "var(--c3)", "var(--c4)"];
+      var names = { ig: "Instagram", fb: "Facebook" };
+      var sp = el("div", "split");
+      var lg = el("div", "legend");
+      atrib.slice(0, 4).forEach(function (a, i) {
+        var label = names[a.label.toLowerCase()] || a.label;
+        var seg = el("i");
+        seg.style.width = ((a.value / totalA) * 100) + "%";
+        seg.style.background = palette[i];
+        seg.setAttribute("data-tip", label + " · " + nf.format(a.value) + " (" + nf1.format((a.value / totalA) * 100) + "%)");
+        if ((a.value / totalA) > 0.12) seg.textContent = nf1.format((a.value / totalA) * 100) + "%";
+        sp.appendChild(seg);
+        lg.appendChild(legendItem(palette[i], label + " · " + nf.format(a.value)));
+      });
+      ab.appendChild(sp);
+      ab.appendChild(lg);
+    }
+
+    var porAsesor = countBy("Difusiones", /Asesor Asignado/i).slice(0, 8);
+    var db2 = $("#difAsesorBody");
+    db2.textContent = "";
+    if (!porAsesor.length) db2.appendChild(emptyState("Sin difusiones en " + PERIODO.label, "Aún no se envía difusión en este periodo."));
+    else {
+      var tot = countBy("Difusiones", /Asesor Asignado/i).reduce(function (s, x) { return s + x.value; }, 0);
+      db2.appendChild(barList(porAsesor, "var(--c3)", tot));
+    }
+  }
+
+  function renderEvento(m) {
+    var s = state.sheetCfg || {};
+    var b = $("#eventoBody");
+    b.textContent = "";
+    var dl = el("dl", "dl");
+    function add(k, v, href) {
+      dl.appendChild(el("dt", "", k));
+      var dd = el("dd");
+      if (href) {
+        var a = el("a", "", v);
+        a.href = href; a.target = "_blank"; a.rel = "noopener";
+        dd.appendChild(a);
+      } else dd.textContent = v;
+      dl.appendChild(dd);
+    }
+    add("Webinar", fmtDate(m.c.fechaWebinar) + (s.evento && s.evento.indexOf("PM") > 0 ? " · 7:30 PM" : ""));
+    add("Captación", fmtDate(m.c.fechaInicio) + " → " + fmtDate(m.c.fechaWebinar) + (m.diasTotales ? " (" + m.diasTotales + " días)" : ""));
+    if (s.form) add("Formulario", s.form, s.form);
+    if (!PUBLICO) add("Hoja de cálculo", "Registro Webinar One Storage | WA", SHEET_URL);
+    add("Videos en pauta", (s.videos && s.videos[0]) || PAUTA_NOMBRE, PAUTA_URL);
+    add("Periodo de difusión", PERIODO.label + (state.soloPeriodo ? " · desde cero" : " · viendo histórico"));
+    add("Año de la vista", s.anio || "—");
+    b.appendChild(dl);
+  }
+
+  function emptyState(title, body) {
+    var d = el("div", "empty");
+    d.appendChild(el("strong", "", title));
+    d.appendChild(document.createTextNode(body));
+    return d;
+  }
+
+  /* ── render: hoja ──────────────────────────────────────────────── */
+
+  function renderSheet() {
+    var name = state.view;
+    var t = state.tabs[name];
+    $("#sheetTitle").textContent = name;
+    var scroll = $("#sheetScroll");
+    var foot = $("#sheetFoot");
+    scroll.textContent = ""; foot.textContent = "";
+
+    if (!t) {
+      scroll.appendChild(emptyState("Aún sin datos", "Esperando la primera lectura de la hoja."));
+      return;
+    }
+    var base = viewRows(name);
+    var q = norm(state.search);
+    var rows = q ? base.filter(function (r) { return norm(r.join(" ")).indexOf(q) >= 0; }) : base;
+    $("#sheetCount").textContent = nf.format(rows.length) + (q ? " de " + nf.format(base.length) : "") + " filas · " + t.cols + " columnas";
+
+    var toggle = $("#btnPeriodo");
+    toggle.hidden = name !== "Difusiones";
+    if (name === "Difusiones") {
+      toggle.textContent = state.soloPeriodo
+        ? "Solo " + PERIODO.label + " · " + nf.format(base.length) + " filas"
+        : "Histórico completo · " + nf.format(base.length) + " filas";
+      toggle.setAttribute("aria-pressed", state.soloPeriodo ? "true" : "false");
+    }
+
+    if (!rows.length) {
+      var fueraDePeriodo = name === "Difusiones" && state.soloPeriodo && t.rows.length > 0;
+      scroll.appendChild(emptyState(
+        q ? "Sin coincidencias" : (fueraDePeriodo ? "Nada aún en " + PERIODO.label : "Hoja vacía"),
+        q ? "Ninguna fila contiene “" + state.search + "”."
+          : (fueraDePeriodo
+            ? "La hoja tiene " + nf.format(t.rows.length) + " filas de periodos anteriores que no cuentan para este webinar. Cambia a “Histórico completo” si quieres verlas."
+            : "Esta hoja todavía no tiene filas de datos. Se llenará sola conforme lleguen registros.")
+      ));
+      return;
+    }
+
+    var table = el("table", "data");
+    var thead = el("thead"), trh = el("tr");
+    t.header.forEach(function (h, i) { trh.appendChild(el("th", "", h || ("Col " + (i + 1)))); });
+    thead.appendChild(trh);
+    table.appendChild(thead);
+
+    var tbody = el("tbody");
+    var shown = rows.slice(0, state.limit);
+    shown.forEach(function (r) {
+      var tr = el("tr");
+      for (var i = 0; i < t.cols; i++) {
+        var v = esc(r[i]);
+        var td = el("td", /^[\d.,$%\-]+$/.test(v.trim()) && v.trim() !== "" ? "n" : "");
+        if (/^https?:\/\//.test(v)) {
+          var a = el("a", "", v.replace(/^https?:\/\//, "").slice(0, 46));
+          a.href = v; a.target = "_blank"; a.rel = "noopener";
+          td.appendChild(a);
+        } else {
+          td.textContent = v;
+          if (v) td.title = v;
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    scroll.appendChild(table);
+
+    foot.appendChild(el("span", "", "Mostrando " + nf.format(shown.length) + " de " + nf.format(rows.length) + " filas"));
+    if (rows.length > shown.length) {
+      var more = el("button", "btn", "Mostrar 200 más");
+      more.type = "button";
+      more.addEventListener("click", function () { state.limit += 200; renderSheet(); });
+      foot.appendChild(more);
+    }
+  }
+
+  function updateCounts() {
+    TABS.forEach(function (name) {
+      var n = document.querySelector('[data-count="' + name + '"]');
+      if (!n) return;
+      var t = state.tabs[name];
+      n.textContent = t ? nf.format(viewRows(name).length) : "—";
+    });
+  }
+
+  /* ── navegación ────────────────────────────────────────────────── */
+
+  function setView(v) {
+    state.view = v;
+    state.search = "";
+    state.limit = 200;
+    $("#sheetSearch").value = "";
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-btn"), function (b) {
+      b.setAttribute("aria-current", b.getAttribute("data-view") === v ? "true" : "false");
+    });
+    var isPanel = v === "panel";
+    $("#content").hidden = !isPanel;
+    $("#sheetView").hidden = isPanel;
+    $("#viewTitle").textContent = isPanel ? "Panel" : "Hoja · " + v;
+    $("#viewSub").textContent = isPanel
+      ? "Registro Webinar One Storage | WA (Respuestas)"
+      : "Espejo en vivo de la pestaña “" + v + "”";
+    if (isPanel) { if (state.sheetCfg) renderPanel(); }
+    else renderSheet();
+    window.scrollTo(0, 0);
+  }
+
+  document.getElementById("nav").addEventListener("click", function (e) {
+    var b = e.target.closest(".nav-btn");
+    if (b) setView(b.getAttribute("data-view"));
+  });
+  $("#btnPeriodo").addEventListener("click", function () {
+    state.soloPeriodo = !state.soloPeriodo;
+    state.limit = 200;
+    renderSheet();
+    updateCounts();
+  });
+  $("#sheetSearch").addEventListener("input", function (e) {
+    state.search = e.target.value;
+    state.limit = 200;
+    renderSheet();
+  });
+
+  /* ── estado en vivo ────────────────────────────────────────────── */
+
+  function setStatus(kind, text) {
+    state.status = kind;
+    var live = $("#live");
+    live.setAttribute("data-state", (kind === "live" || kind === "snapshot") ? "live" : kind);
+    $("#liveText").textContent = "";
+    if (text) { $("#liveText").textContent = text; return; }
+    tickAge();
+  }
+
+  function tickAge() {
+    if (!state.lastAt) return;
+    if (state.status !== "live" && state.status !== "snapshot") return;
+    var s = Math.max(0, Math.round((Date.now() - state.lastAt) / 1000));
+    var label = s < 60 ? "hace " + s + " s" : "hace " + Math.floor(s / 60) + " min";
+    var node = $("#liveText");
+    node.textContent = "";
+    node.appendChild(document.createTextNode(
+      state.status === "snapshot" ? "Corte " + dfHora.format(new Date(state.lastAt)) + " · " : "En vivo · "));
+    node.appendChild(el("b", "", label));
+
+    // Si la rutina que republica el panel deja de correr, que se note.
+    var atrasado = state.status === "snapshot" && s > 330;
+    if (atrasado !== state.atrasado) {
+      state.atrasado = atrasado;
+      $("#live").setAttribute("data-state", atrasado ? "loading" : "live");
+      if (atrasado) {
+        showBanner("warn", "Los datos llevan " + Math.floor(s / 60) + " min sin refrescarse",
+          "La rutina que republica este panel cada minuto no ha corrido. Los números siguen siendo los de la última corrida buena.",
+          "Recargar", function () { window.location.reload(); });
+      } else showBanner(null);
+    }
+  }
+  setInterval(tickAge, 1000);
+
+  function showBanner(tone, title, body, actionLabel, action) {
+    var slot = $("#bannerSlot");
+    slot.textContent = "";
+    if (!tone) return;
+    var b = el("div", "banner");
+    b.setAttribute("data-tone", tone);
+    var txt = el("div");
+    txt.appendChild(el("div", "banner-title", title));
+    txt.appendChild(el("div", "banner-body", body));
+    b.appendChild(txt);
+    if (actionLabel) {
+      var btn = el("button", "btn", actionLabel);
+      btn.type = "button";
+      btn.addEventListener("click", action);
+      b.appendChild(btn);
+    }
+    slot.appendChild(b);
+  }
+
+  /* ── conexión con Google Drive ─────────────────────────────────── */
+
+  // Punto único de entrada de datos: reciba las hojas del conector o del snapshot.
+  function applyGrids(assigned, at) {
+    var tabs = {};
+    TABS.forEach(function (name) { if (assigned[name]) tabs[name] = toTable(assigned[name]); });
+    state.tabs = tabs;
+    state.sheetCfg = readGeneral(assigned["General"] || []);
+    state.lastAt = at || Date.now();
+    if (state.view === "panel") renderPanel(); else renderSheet();
+    updateCounts();
+  }
+
+  $("#btnRefresh").addEventListener("click", function () {
+    if (WEB) refrescarWeb(); else window.location.reload();
+  });
+
+  var CLAUDE = (typeof window !== "undefined" && window.claude && typeof window.claude.use === "function")
+    ? window.claude
+    : { use: function () { return Promise.resolve(null); } };
+
+  if (WEB) arrancarWeb();
+  else arrancarEstatico();
+
+  function ocultarHojas() {
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-btn"), function (b) {
+      if (b.getAttribute("data-view") !== "panel") b.remove();
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-group"), function (g, i) {
+      if (i > 0) g.remove();
+    });
+  }
+
+  // Sin objetivos guardados del lado del servidor: la hoja manda.
+  function modoPublico(nota) {
+    var g = $("#btnGoals"); if (g) g.remove();
+    if (!WEB) { var r = $("#btnRefresh"); if (r) r.remove(); }
+    var foot = document.querySelector(".rail-foot");
+    if (foot) foot.textContent = nota;
+  }
+
+  function csvUrl(gid) {
+    return "https://docs.google.com/spreadsheets/d/" + WEB.hoja +
+      "/export?format=csv&gid=" + gid + "&_=" + Date.now();
+  }
+
+  function refrescarWeb() {
+    var nombres = Object.keys(WEB.gids);
+    setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo la hoja…");
+    Promise.all(nombres.map(function (n) {
+      return fetch(csvUrl(WEB.gids[n]), { cache: "no-store" }).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status + " en la hoja " + n);
+        return r.text();
+      }).then(function (t) {
+        if (t.trimStart().charAt(0) === "<") throw new Error("la hoja dejó de ser legible por link");
+        return parseCSV(t);
+      });
+    })).then(function (lista) {
+      var grids = {};
+      nombres.forEach(function (n, i) { grids[n] = lista[i]; });
+      if (RECORTAR) grids = recortarPII(grids);
+      showBanner(null);
+      setStatus("live");
+      applyGrids(grids, Date.now());
+    }).catch(function (e) {
+      setStatus("error", state.sheetCfg ? "Dato anterior" : "Sin datos");
+      showBanner("warn", "No se pudo leer la hoja de cálculo",
+        "Google respondió: " + e.message + ". El panel necesita que la hoja siga compartida como “cualquier persona con el enlace puede ver”.",
+        "Reintentar", refrescarWeb);
+    });
+  }
+
+  function arrancarWeb() {
+    if (PUBLICO) modoPublico("Vista de solo lectura. Lee la hoja de cálculo del equipo cada minuto.");
+    if (SOLO_PANEL) ocultarHojas();
+    loadLocal();
+    // Si este navegador nunca ha guardado objetivos, arranca con los del build.
+    if (WEB.overrides && !Object.keys(state.overrides || {}).length) {
+      state.overrides = WEB.overrides;
+    }
+    refrescarWeb();
+    setInterval(refrescarWeb, WEB.intervalo || 60000);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) refrescarWeb();
+    });
+  }
+
+  function arrancarEstatico() {
+    if (!SNAP) {
+      setStatus("error", "Sin datos");
+      showBanner("crit", "Este panel se publicó sin datos",
+        "Vuelve a generarlo con la rutina de publicación y recarga la página.");
+      return;
+    }
+    if (PUBLICO) modoPublico("Vista de solo lectura. Refleja la hoja de cálculo del equipo.");
+    if (SOLO_PANEL) ocultarHojas();
+    state.overrides = SNAP.overrides || {};
+    setStatus("snapshot");
+    applyGrids(SNAP.grids || {}, SNAP.generatedAt);
+    tickAge();
+  }
+
+  /* ── objetivos editables ───────────────────────────────────────── */
+
+  var LOCAL_KEY = "webinar-os-objetivos";
+
+  function applyOverrides(o) {
+    state.overrides = o && typeof o === "object" ? o : {};
+    if (state.view === "panel" && state.sheetCfg) renderPanel();
+  }
+
+  if (!PUBLICO) CLAUDE.use("db").then(function (db) {
+    if (!db) return loadLocal();
+    state.storeMode = "db";
+    state.dbRef = db.doc("config/objetivos");
+    state.dbRef.onSnapshot(function (snap) {
+      applyOverrides(snap.exists ? snap.data() : {});
+    }, function () {
+      state.storeMode = "local";
+      loadLocal();
+    });
+  }).catch(loadLocal);
+  else state.storeMode = "none";
+
+  function loadLocal() {
+    if (state.storeMode === "db") return;
+    state.storeMode = "local";
+    try {
+      var raw = localStorage.getItem(LOCAL_KEY);
+      if (raw) applyOverrides(JSON.parse(raw));
+    } catch (e) { }
+  }
+
+  function persist(o) {
+    if (state.storeMode === "db" && state.dbRef) {
+      return state.dbRef.set(o);
+    }
+    try { localStorage.setItem(LOCAL_KEY, JSON.stringify(o)); } catch (e) { }
+    applyOverrides(o);
+    return Promise.resolve();
+  }
+
+  function openDrawer() {
+    if (!state.sheetCfg) {
+      showBanner("info", "Espera a la primera lectura",
+        "Los objetivos se editan sobre los valores de la hoja; en cuanto lleguen podrás cambiarlos.");
+      return;
+    }
+    var s = state.sheetCfg, o = state.overrides, c = cfg();
+    var body = $("#drawerBody");
+    body.textContent = "";
+
+    body.appendChild(field({
+      id: "fObjetivo", label: "Objetivo total de registros", type: "number", min: 1,
+      value: c.objetivo,
+      hint: "En la hoja: " + nf.format(s.objetivo || 0) + (c.overridden.objetivo ? " · ahora estás usando un valor propio" : "")
+    }));
+    body.appendChild(field({
+      id: "fInicio", label: "Fecha de inicio de captación", type: "date",
+      value: toISO(c.fechaInicio),
+      hint: "En la hoja: " + fmtDate(s.fechaInicio)
+    }));
+    body.appendChild(field({
+      id: "fWebinar", label: "Fecha del webinar", type: "date",
+      value: toISO(c.fechaWebinar),
+      hint: "En la hoja: " + fmtDate(s.fechaWebinar)
+    }));
+
+    var chk = el("label", "check");
+    var cb = el("input"); cb.type = "checkbox"; cb.id = "fCampanas"; cb.checked = c.contarCampanas;
+    chk.appendChild(cb);
+    var chkTxt = el("span");
+    chkTxt.appendChild(el("b", "", "Contar los leads de campañas en el avance"));
+    chkTxt.appendChild(el("div", "hint", "Suma las filas de Campañas y Duplicados al total que se compara contra el objetivo."));
+    chk.appendChild(chkTxt);
+    body.appendChild(chk);
+
+    body.appendChild(el("div", "divider"));
+
+    var wrap = el("div", "field");
+    wrap.appendChild(el("label", "", "Objetivo por asesor"));
+    wrap.appendChild(el("div", "hint", "Equivale a la columna “Objetivos sesgo” de la hoja General."));
+    var grid = el("div", "sesgo-grid");
+    (s.asesores || []).forEach(function (a, i) {
+      var row = el("div", "sesgo-row");
+      row.appendChild(el("span", "", a.nombre));
+      var inp = el("input");
+      inp.type = "number"; inp.min = "0"; inp.id = "fSesgo" + i;
+      inp.setAttribute("data-nombre", a.nombre);
+      var ov = c.objetivoDe(a.nombre);
+      inp.value = ov == null ? "" : ov;
+      inp.placeholder = "sin objetivo";
+      row.appendChild(inp);
+      grid.appendChild(row);
+    });
+    wrap.appendChild(grid);
+    body.appendChild(wrap);
+
+    var note = el("div", "hint");
+    note.textContent = state.storeMode === "db"
+      ? "Se guarda para todo el equipo que abra este panel."
+      : "Se guarda solo en este navegador.";
+    body.appendChild(note);
+
+    $("#scrim").hidden = false;
+    $("#drawer").hidden = false;
+    $("#savedMsg").hidden = true;
+    $("#fObjetivo").focus();
+  }
+
+  function field(opt) {
+    var f = el("div", "field");
+    var lab = el("label", "", opt.label);
+    lab.setAttribute("for", opt.id);
+    f.appendChild(lab);
+    var inp = el("input");
+    inp.type = opt.type; inp.id = opt.id;
+    if (opt.min != null) inp.min = String(opt.min);
+    inp.value = opt.value == null ? "" : String(opt.value);
+    f.appendChild(inp);
+    if (opt.hint) f.appendChild(el("div", "hint", opt.hint));
+    return f;
+  }
+
+  function closeDrawer() {
+    $("#scrim").hidden = true;
+    $("#drawer").hidden = true;
+  }
+
+  $("#btnGoals").addEventListener("click", openDrawer);
+  $("#drawerClose").addEventListener("click", closeDrawer);
+  $("#scrim").addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer();
+  });
+
+  $("#btnSave").addEventListener("click", function () {
+    var s = state.sheetCfg || {};
+    var o = {};
+    var objetivo = parseFloat($("#fObjetivo").value);
+    if (isFinite(objetivo) && objetivo > 0 && objetivo !== s.objetivo) o.objetivoRegistros = objetivo;
+    var ini = $("#fInicio").value;
+    if (ini && ini !== toISO(s.fechaInicio)) o.fechaInicio = ini;
+    var fin = $("#fWebinar").value;
+    if (fin && fin !== toISO(s.fechaWebinar)) o.fechaWebinar = fin;
+    o.contarCampanas = $("#fCampanas").checked;
+
+    var sesgo = {};
+    Array.prototype.forEach.call(document.querySelectorAll("[data-nombre]"), function (inp) {
+      var v = parseFloat(inp.value);
+      var nombre = inp.getAttribute("data-nombre");
+      var base = (s.asesores || []).filter(function (a) { return a.nombre === nombre; })[0];
+      var hoja = base && base.sesgo != null ? base.sesgo
+        : (base && base.objHoja != null ? Math.round(base.objHoja) : null);
+      if (isFinite(v) && v >= 0 && v !== hoja) sesgo[nombre] = v;
+    });
+    if (Object.keys(sesgo).length) o.sesgo = sesgo;
+    o.updatedAt = Date.now();
+
+    var btn = $("#btnSave");
+    btn.disabled = true;
+    persist(o).then(function () {
+      applyOverrides(o);
+      $("#savedMsg").hidden = false;
+      btn.disabled = false;
+      setTimeout(function () { $("#savedMsg").hidden = true; closeDrawer(); }, 700);
+    }).catch(function () {
+      btn.disabled = false;
+      showBanner("warn", "No se pudo guardar", "Los objetivos no se guardaron. Inténtalo de nuevo.");
+      closeDrawer();
+    });
+  });
+
+  $("#btnReset").addEventListener("click", function () {
+    persist({ updatedAt: Date.now() }).then(function () {
+      applyOverrides({});
+      closeDrawer();
+    });
+  });
+
+  /* ── tooltip ───────────────────────────────────────────────────── */
+
+  var tip = $("#tip");
+  document.addEventListener("mousemove", function (e) {
+    var t = e.target.closest ? e.target.closest("[data-tip]") : null;
+    if (!t) { tip.hidden = true; return; }
+    tip.textContent = t.getAttribute("data-tip");
+    tip.hidden = false;
+    var x = Math.min(window.innerWidth - tip.offsetWidth - 12, e.clientX + 14);
+    var y = Math.max(8, e.clientY - tip.offsetHeight - 12);
+    tip.style.left = x + "px";
+    tip.style.top = y + "px";
+  });
+  document.addEventListener("mouseleave", function () { tip.hidden = true; });
+  document.addEventListener("scroll", function () { tip.hidden = true; }, true);
+
+})();
+</script>
+
+</body>
+</html>
