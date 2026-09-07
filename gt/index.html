@@ -21,6 +21,9 @@
       "key": "septiembre 2026",
       "label": "Septiembre 2026"
     },
+    "excluirAsesores": [
+      "Julene Gorriño"
+    ],
     "hojas": [
       {
         "nombre": "General",
@@ -597,6 +600,10 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     for (var i = 0; i < HOJAS.length; i++) if (HOJAS[i].nombre === nombre) return HOJAS[i].rol;
     return null;
   }
+
+  // Asesores que siguen en la hoja pero no participan en este webinar.
+  var EXCLUIDOS = (CFG.excluirAsesores || []).map(function (n) { return norm(n); });
+  function excluido(nombre) { return EXCLUIDOS.indexOf(norm(nombre)) >= 0; }
   var ESTATICO = !!SNAP;
   var PUBLICO = !!((SNAP && SNAP.publico) || (WEB && WEB.publico));
   var SOLO_PANEL = !!((SNAP && SNAP.soloPanel) || (WEB && WEB.soloPanel));
@@ -832,11 +839,22 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       var name = esc(row[0]).trim();
       if (!name) continue;
       if (/^(asesores|campañas|día del evento|formulario|link para|videos|webinar)/i.test(name)) break;
+      if (excluido(name)) continue;
       cfg.asesores.push({
         nombre: name,
         sesgo: numero(row, cSesgo),
         objHoja: numero(row, cObjAsesor)
       });
+    }
+
+    // La hoja reparte el objetivo entre los asesores que lista. Si el panel
+    // deja fuera a alguno, el reparto se rehace sobre los que quedan.
+    if (EXCLUIDOS.length && cfg.objetivo) {
+      var conMeta = cfg.asesores.filter(function (a) { return a.objHoja != null; });
+      if (conMeta.length) {
+        var parte = cfg.objetivo / conMeta.length;
+        conMeta.forEach(function (a) { a.objHoja = parte; });
+      }
     }
     if (cfg.asesores.length && cfg.asesores[0].objHoja != null) cfg.objetivoPorAsesor = cfg.asesores[0].objHoja;
 
