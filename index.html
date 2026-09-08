@@ -24,6 +24,16 @@
       "key": "septiembre 2026",
       "label": "Septiembre 2026"
     },
+    "excluirAsesores": [],
+    "asesoresPorId": {
+      "12093183": "Giovanni Colosia",
+      "12260927": "Ana Hernández",
+      "13326296": "Ricardo Maza",
+      "14579251": "Edwin Euceda",
+      "14787567": "Alejandra May",
+      "15481887": "Arlette Zuñiga",
+      "15738151": "Fernando Alcaraz"
+    },
     "hojas": [
       {
         "nombre": "General",
@@ -622,6 +632,15 @@ table.data tbody tr:hover td{background:var(--surface-2)}
   // Asesores que siguen en la hoja pero no participan en este webinar.
   var EXCLUIDOS = (CFG.excluirAsesores || []).map(function (n) { return norm(n); });
   function excluido(nombre) { return EXCLUIDOS.indexOf(norm(nombre)) >= 0; }
+
+  // El formulario y las hojas de leads pueden traer el ID de Kommo en vez del
+  // nombre. Se traduce para que el registro cuente en la fila del asesor.
+  var POR_ID = CFG.asesoresPorId || {};
+  function resolverAsesor(v) {
+    var t = esc(v).trim();
+    if (!t) return "";
+    return POR_ID[t] || t;
+  }
   var ESTATICO = !!SNAP;
   var PUBLICO = !!((SNAP && SNAP.publico) || (WEB && WEB.publico));
   var SOLO_PANEL = !!((SNAP && SNAP.soloPanel) || (WEB && WEB.soloPanel));
@@ -758,15 +777,31 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     });
   }
 
-  // Índice de la columna de asesor, para el filtro de las hojas de leads.
-  function colAsesorDe(t) {
-    if (!t || !t.header) return -1;
+  // Columnas de asesor de una hoja: la del nombre y la del ID de Kommo.
+  function indicesAsesor(t) {
+    var out = { nombre: -1, id: -1 };
+    if (!t || !t.header) return out;
     var exacta = -1, suelta = -1;
     t.header.forEach(function (h, i) {
-      if (/asesor asignado/i.test(h) && exacta < 0) exacta = i;
-      else if (/asesor/i.test(h) && !/id/i.test(h) && suelta < 0) suelta = i;
+      var esId = /\bid\b/i.test(h);
+      if (!/asesor/i.test(h)) return;
+      if (esId) { if (out.id < 0) out.id = i; return; }
+      if (/asesor asignado/i.test(h)) { if (exacta < 0) exacta = i; }
+      else if (suelta < 0) suelta = i;
     });
-    return exacta >= 0 ? exacta : suelta;
+    out.nombre = exacta >= 0 ? exacta : suelta;
+    return out;
+  }
+
+  // Nombre del asesor de una fila: por su columna de nombre, y si ahí viene
+  // un ID (o está vacía) se cae a la columna de ID.
+  function asesorDeFila(idx, fila) {
+    if (idx.nombre >= 0) {
+      var v = resolverAsesor((fila || [])[idx.nombre]);
+      if (v) return v;
+    }
+    if (idx.id >= 0) return resolverAsesor((fila || [])[idx.id]);
+    return "";
   }
 
   function mesCols(t) {
@@ -924,14 +959,11 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var c = cfg();
     var reg = state.tabs[hojaConRol("registros")] || { header: [], rows: [] };
 
-    var colAsesor = (reg.header || []).reduce(function (acc, h, i) {
-      return /asesor/i.test(h) ? i : acc;
-    }, -1);
-
+    var idxReg = indicesAsesor(reg);
     var porAsesor = {};
     var registros = reg.rows.length;
     reg.rows.forEach(function (r) {
-      var key = colAsesor >= 0 ? norm(r[colAsesor]) : "";
+      var key = norm(asesorDeFila(idxReg, r));
       porAsesor[key] = (porAsesor[key] || 0) + 1;
     });
 
@@ -1323,17 +1355,17 @@ table.data tbody tr:hover td{background:var(--surface-2)}
   /* ── render: hoja ──────────────────────────────────────────────── */
 
   // Cada asesor puede quedarse solo con sus filas.
-  function poblarFiltroAsesor(t, base, iAsesor) {
+  function poblarFiltroAsesor(t, base, idx) {
     var wrap = $("#filtroAsesor");
     var sel = $("#selAsesor");
-    if (iAsesor < 0) {
+    if (idx.nombre < 0 && idx.id < 0) {
       wrap.hidden = true;
       if (state.asesor) state.asesor = "";
       return;
     }
     var vistos = {}, nombres = [];
     base.forEach(function (r) {
-      var v = esc(r[iAsesor]).trim();
+      var v = asesorDeFila(idx, r);
       if (!v || vistos[v]) return;
       vistos[v] = true;
       nombres.push(v);
@@ -1348,7 +1380,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     todos.value = "";
     sel.appendChild(todos);
     nombres.forEach(function (n) {
-      var cuenta = base.filter(function (r) { return esc(r[iAsesor]).trim() === n; }).length;
+      var cuenta = base.filter(function (r) { return asesorDeFila(idx, r) === n; }).length;
       var o = el("option", "", n + " · " + nf.format(cuenta));
       o.value = n;
       sel.appendChild(o);
@@ -1369,12 +1401,12 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       return;
     }
     var base = viewRows(name);
-    var iAsesor = colAsesorDe(t);
-    poblarFiltroAsesor(t, base, iAsesor);
+    var idxAsesor = indicesAsesor(t);
+    poblarFiltroAsesor(t, base, idxAsesor);
 
-    if (iAsesor >= 0 && state.asesor) {
+    if (state.asesor) {
       var buscado = norm(state.asesor);
-      base = base.filter(function (r) { return norm(r[iAsesor]) === buscado; });
+      base = base.filter(function (r) { return norm(asesorDeFila(idxAsesor, r)) === buscado; });
     }
     var q = norm(state.search);
     var rows = q ? base.filter(function (r) { return norm(r.join(" ")).indexOf(q) >= 0; }) : base;
