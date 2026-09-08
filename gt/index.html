@@ -9,6 +9,7 @@
 <style>:root{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <script>window.__PANEL_WEB__ = {
   "cfg": {
+    "version": "20260908T020214",
     "titulo": "Webinar GT",
     "marca": "GT",
     "subtitulo": "8 oct 2026",
@@ -1656,7 +1657,28 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       "/export?format=csv&gid=" + gid + "&_=" + Date.now();
   }
 
+  /* El hosting cachea el HTML, así que una pestaña abierta puede quedarse con
+   * una versión vieja del panel durante minutos. Cada refresco compara su
+   * versión contra la publicada y se recarga una sola vez si cambió. */
+  function revisarVersion() {
+    if (!CFG.version) return;
+    fetch("version.txt?_=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.text() : null; })
+      .then(function (t) {
+        if (!t) return;
+        var publicada = t.trim();
+        if (!publicada || publicada === CFG.version) return;
+        // La versión ya pedida viaja en la URL: así una recarga que siga
+        // sirviendo HTML viejo (caché intermedia) no se repite en bucle.
+        if (/[?&]v=/.test(location.search) &&
+            decodeURIComponent(location.search.replace(/.*[?&]v=([^&]*).*/, "$1")) === publicada) return;
+        location.replace(location.pathname + "?v=" + encodeURIComponent(publicada) + location.hash);
+      })
+      .catch(function () { });
+  }
+
   function refrescarWeb() {
+    revisarVersion();
     setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo la hoja…");
     Promise.all(HOJAS.map(function (h) {
       return fetch(csvUrl(h.gid), { cache: "no-store" }).then(function (r) {
