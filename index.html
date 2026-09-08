@@ -757,25 +757,32 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     return { header: header, rows: rows, cols: w };
   }
 
-  // La hoja General se muestra sin la columna "Objetivos" (queda el sesgo) y
-  // cortada antes del bloque del evento, que ya vive en el panel.
-  function limpiarGeneral(grid) {
-    if (!grid || !grid.length) return grid;
-    var quitar = -1, haySesgo = false;
-    (grid[0] || []).forEach(function (h, i) {
-      if (norm(h) === "objetivos") quitar = i;
-      if (norm(h) === "objetivos sesgo") haySesgo = true;
+  /* La hoja General no es una tabla por asesor: las fechas, el objetivo total
+   * y los faltantes viven en la fila del primer asesor porque son valores
+   * únicos, y su columna Registros depende de una fórmula que ya no apunta a
+   * ningún lado. Mostrarla tal cual hace parecer que solo ese asesor tiene
+   * datos. Aquí se arma la tabla que la hoja quiso ser, con lo que el panel
+   * calcula: un renglón por asesor y un valor en cada columna.
+   */
+  function tablaGeneral() {
+    var m = metrics();
+    var rows = m.asesores.map(function (a) {
+      return [
+        a.nombre,
+        nf.format(a.registros),
+        a.objetivo > 0 ? nf.format(a.objetivo) : "—",
+        a.objetivo > 0 ? nf1.format((a.registros / a.objetivo) * 100) + "%" : "—",
+        a.objetivo > 0 ? nf.format(Math.max(0, a.objetivo - a.registros)) : "—"
+      ];
     });
-    // Si la hoja no trae sesgo, "Objetivos" es la única meta: no se quita.
-    if (!haySesgo) quitar = -1;
-    var corte = grid.length;
-    for (var r = 0; r < grid.length; r++) {
-      if (/^d[ií]a del evento/i.test(esc((grid[r] || [])[0]).trim())) { corte = r; break; }
+    if (m.sinAsignar > 0) {
+      rows.push(["Sin asesor reconocido", nf.format(m.sinAsignar), "—", "—", "—"]);
     }
-    return grid.slice(0, corte).map(function (fila) {
-      if (quitar < 0) return fila.slice();
-      return fila.filter(function (_, i) { return i !== quitar; });
-    });
+    return {
+      header: ["Asesor", "Registros", "Objetivo", "Cumplimiento", "Faltan"],
+      rows: rows,
+      cols: 5
+    };
   }
 
   // Columnas de asesor de una hoja: la del nombre y la del ID de Kommo.
@@ -1402,7 +1409,8 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       return;
     }
     var base = viewRows(name);
-    var idxAsesor = indicesAsesor(t);
+    // La General ya viene desglosada por asesor: filtrarla no aporta nada.
+    var idxAsesor = rolDe(name) === "general" ? { nombre: -1, id: -1 } : indicesAsesor(t);
     poblarFiltroAsesor(t, base, idxAsesor);
 
     if (state.asesor) {
@@ -1629,10 +1637,13 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     state.sheetCfg = readGeneral(assigned["General"] || []);
     var tabs = {};
     TABS.forEach(function (name) {
-      if (!assigned[name]) return;
-      tabs[name] = toTable(rolDe(name) === "general" ? limpiarGeneral(assigned[name]) : assigned[name]);
+      // La General se arma al final: necesita las demás hojas ya cargadas.
+      if (!assigned[name] || rolDe(name) === "general") return;
+      tabs[name] = toTable(assigned[name]);
     });
     state.tabs = tabs;
+    var general = hojaConRol("general");
+    if (general && assigned[general]) state.tabs[general] = tablaGeneral();
     state.lastAt = at || Date.now();
     if (state.view === "panel") renderPanel(); else renderSheet();
     updateCounts();
