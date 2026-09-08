@@ -785,31 +785,34 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     };
   }
 
-  // Columnas de asesor de una hoja: la del nombre y la del ID de Kommo.
-  function indicesAsesor(t) {
-    var out = { nombre: -1, id: -1 };
-    if (!t || !t.header) return out;
-    var exacta = -1, suelta = -1;
+  /* Columnas de asesor de una hoja, en orden de confianza. Una misma hoja
+   * puede traer varias: "Selecciona tu asesor" con el ID que manda el
+   * formulario y una "Asesor" al lado con el nombre ya resuelto. */
+  function columnasAsesor(t) {
+    if (!t || !t.header) return [];
+    var nombres = [], otras = [], ids = [];
     t.header.forEach(function (h, i) {
-      var esId = /\bid\b/i.test(h);
       if (!/asesor/i.test(h)) return;
-      if (esId) { if (out.id < 0) out.id = i; return; }
-      if (/asesor asignado/i.test(h)) { if (exacta < 0) exacta = i; }
-      else if (suelta < 0) suelta = i;
+      if (/\bid\b/i.test(h)) { ids.push(i); return; }
+      var n = norm(h);
+      if (n === "asesor" || n === "asesor asignado") nombres.push(i);
+      else otras.push(i);
     });
-    out.nombre = exacta >= 0 ? exacta : suelta;
-    return out;
+    return nombres.concat(otras, ids);
   }
 
-  // Nombre del asesor de una fila: por su columna de nombre, y si ahí viene
-  // un ID (o está vacía) se cae a la columna de ID.
-  function asesorDeFila(idx, fila) {
-    if (idx.nombre >= 0) {
-      var v = resolverAsesor((fila || [])[idx.nombre]);
-      if (v) return v;
+  /* Nombre del asesor de una fila: gana la primera columna que dé un nombre.
+   * Un ID suelto solo se usa si ninguna columna trae texto — así una hoja
+   * que resuelve el ID por su cuenta manda sobre el mapa del panel. */
+  function asesorDeFila(cols, fila) {
+    var suelto = "";
+    for (var k = 0; k < cols.length; k++) {
+      var v = resolverAsesor((fila || [])[cols[k]]);
+      if (!v) continue;
+      if (!/^\d+$/.test(v)) return v;
+      if (!suelto) suelto = v;
     }
-    if (idx.id >= 0) return resolverAsesor((fila || [])[idx.id]);
-    return "";
+    return suelto;
   }
 
   function mesCols(t) {
@@ -967,7 +970,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var c = cfg();
     var reg = state.tabs[hojaConRol("registros")] || { header: [], rows: [] };
 
-    var idxReg = indicesAsesor(reg);
+    var idxReg = columnasAsesor(reg);
     var porAsesor = {};
     var registros = reg.rows.length;
     reg.rows.forEach(function (r) {
@@ -1366,7 +1369,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
   function poblarFiltroAsesor(t, base, idx) {
     var wrap = $("#filtroAsesor");
     var sel = $("#selAsesor");
-    if (idx.nombre < 0 && idx.id < 0) {
+    if (!idx.length) {
       wrap.hidden = true;
       if (state.asesor) state.asesor = "";
       return;
@@ -1410,7 +1413,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     }
     var base = viewRows(name);
     // La General ya viene desglosada por asesor: filtrarla no aporta nada.
-    var idxAsesor = rolDe(name) === "general" ? { nombre: -1, id: -1 } : indicesAsesor(t);
+    var idxAsesor = rolDe(name) === "general" ? [] : columnasAsesor(t);
     poblarFiltroAsesor(t, base, idxAsesor);
 
     if (state.asesor) {
@@ -1461,7 +1464,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       var tr = el("tr");
       for (var i = 0; i < t.cols; i++) {
         var v = esc(r[i]);
-        var esColAsesor = (i === idxAsesor.nombre || i === idxAsesor.id);
+        var esColAsesor = idxAsesor.indexOf(i) >= 0;
         var nombreId = esColAsesor ? POR_ID[v.trim()] : null;
         var td = el("td", (!nombreId && /^[\d.,$%\-]+$/.test(v.trim()) && v.trim() !== "") ? "n" : "");
         if (/^https?:\/\//.test(v)) {
