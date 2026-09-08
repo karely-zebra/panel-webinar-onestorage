@@ -395,6 +395,7 @@ table.data td{
   white-space:nowrap; max-width:340px; overflow:hidden; text-overflow:ellipsis; vertical-align:top;
 }
 table.data td.n{font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink)}
+.id-crudo{font-family:var(--mono); font-size:11px; color:var(--muted); margin-left:7px; font-variant-numeric:tabular-nums}
 table.data tbody tr:hover td{background:var(--surface-2)}
 .tfoot{padding:12px 18px; display:flex; align-items:center; gap:12px; font-size:12.5px; color:var(--muted)}
 
@@ -1452,11 +1453,18 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       var tr = el("tr");
       for (var i = 0; i < t.cols; i++) {
         var v = esc(r[i]);
-        var td = el("td", /^[\d.,$%\-]+$/.test(v.trim()) && v.trim() !== "" ? "n" : "");
+        var esColAsesor = (i === idxAsesor.nombre || i === idxAsesor.id);
+        var nombreId = esColAsesor ? POR_ID[v.trim()] : null;
+        var td = el("td", (!nombreId && /^[\d.,$%\-]+$/.test(v.trim()) && v.trim() !== "") ? "n" : "");
         if (/^https?:\/\//.test(v)) {
           var a = el("a", "", v.replace(/^https?:\/\//, "").slice(0, 46));
           a.href = v; a.target = "_blank"; a.rel = "noopener";
           td.appendChild(a);
+        } else if (nombreId) {
+          // La hoja guarda el ID de Kommo; se muestra el nombre sin ocultarlo.
+          td.appendChild(document.createTextNode(nombreId));
+          td.appendChild(el("span", "id-crudo", v.trim()));
+          td.title = nombreId + " · ID " + v.trim();
         } else {
           td.textContent = v;
           if (v) td.title = v;
