@@ -568,7 +568,6 @@ table.data tbody tr:hover td{background:var(--surface-2)}
   var dfLong = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "long", year: "numeric" });
   var dfHora = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
   var dfCorta = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "short", year: "numeric" });
-  var dfDia = new Intl.DateTimeFormat("es-MX", { weekday: "short", day: "numeric", month: "short" });
 
   var state = {
     view: "panel",
@@ -925,16 +924,6 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       else tone = "crit";
     }
 
-    // Registros de hoy / ayer y con campaña, para los grupos que no tienen difusiones.
-    var cFecha = colIdx(reg, /^fecha/i), cCamp = colIdx(reg, /^campa/i);
-    var kHoy = toISO(t), kAyer = toISO(new Date(t.getTime() - 86400000));
-    var hoy = 0, ayer = 0, conCampana = 0;
-    reg.rows.forEach(function (r) {
-      var f = cFecha >= 0 ? esc(r[cFecha]).slice(0, 10) : "";
-      if (f === kHoy) hoy++; else if (f === kAyer) ayer++;
-      if (cCamp >= 0 && esc(r[cCamp]).trim()) conCampana++;
-    });
-
     var asesores = (state.sheetCfg && state.sheetCfg.asesores || []).map(function (a) {
       return { nombre: a.nombre, registros: porAsesor[norm(a.nombre)] || 0, objetivo: c.objetivoDe(a.nombre) };
     });
@@ -949,15 +938,8 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       diasTotales: diasTotales, transcurridos: transcurridos, restantes: restantes,
       esperado: esperado, ritmoReq: ritmoReq, ritmoActual: ritmoActual, proyeccion: proyeccion,
       tone: tone, asesores: asesores, sinAsignar: sinAsignar,
-      hoy: hoy, ayer: ayer, conCampana: conCampana,
       activos: asesores.filter(function (a) { return a.registros > 0; }).length
     };
-  }
-
-  function colIdx(t, re) {
-    var idx = -1;
-    ((t && t.header) || []).forEach(function (h, i) { if (idx < 0 && re.test(h)) idx = i; });
-    return idx;
   }
 
   function countBy(tab, colMatcher) {
@@ -1078,18 +1060,11 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var tiles = $("#tiles");
     tiles.textContent = "";
     var tdata = [
-      { v: m.registros, l: CFG.etiquetaRegistros || "Registros del formulario", n: CFG.api ? (CFG.fuenteNombre || "Postgres") : "Hoja " + (hojaConRol("registros") || "—"), rail: m.c.objetivo ? m.registros / m.c.objetivo : 0, color: "var(--c1)" },
-      { v: m.leadsCamp, l: "Leads de campañas", n: hojasConRol("campanas").join(" + ") || "Sin hoja de campañas", rail: m.c.objetivo ? m.leadsCamp / m.c.objetivo : 0, color: "var(--c2)", rol: "campanas" },
-      { v: m.difusiones, l: "Difusiones registradas", n: "Hoja " + (hojaConRol("difusiones") || "—") + (PERIODO.key ? (state.soloPeriodo ? " · " + PERIODO.label : " · histórico completo") : ""), rail: 0, color: "var(--c3)", rol: "difusiones" },
-      { v: m.hoy, l: "Registros de hoy", n: m.ayer + " ayer", rail: 0, color: "var(--c2)", soloSin: "difusiones" },
-      { v: m.conCampana, l: "Con campaña identificada", n: m.registros ? nf1.format((m.conCampana / m.registros) * 100) + "% de los registros" : "Sin registros aún", rail: m.registros ? m.conCampana / m.registros : 0, color: "var(--c3)", soloSin: "difusiones" },
+      { v: m.registros, l: "Registros del formulario", n: "Hoja " + (hojaConRol("registros") || "—"), rail: m.c.objetivo ? m.registros / m.c.objetivo : 0, color: "var(--c1)" },
+      { v: m.leadsCamp, l: "Leads de campañas", n: hojasConRol("campanas").join(" + ") || "Sin hoja de campañas", rail: m.c.objetivo ? m.leadsCamp / m.c.objetivo : 0, color: "var(--c2)" },
+      { v: m.difusiones, l: "Difusiones registradas", n: "Hoja " + (hojaConRol("difusiones") || "—") + (PERIODO.key ? (state.soloPeriodo ? " · " + PERIODO.label : " · histórico completo") : ""), rail: 0, color: "var(--c3)" },
       { v: m.activos + " / " + m.asesores.length, l: "Asesores con registros", n: m.sinAsignar ? nf.format(m.sinAsignar) + " sin asesor reconocido" : "Todos los registros asignados", rail: m.asesores.length ? m.activos / m.asesores.length : 0, color: "var(--ink-2)" }
-    ].filter(function (t) {
-      // Un grupo sin hoja de campañas o de difusiones no muestra esas cifras en cero.
-      if (t.rol) return hojasConRol(t.rol).length > 0;
-      if (t.soloSin) return !hojasConRol(t.soloSin).length;
-      return true;
-    });
+    ];
     tdata.forEach(function (t) {
       var d = el("div", "tile");
       d.appendChild(el("div", "tile-v num", typeof t.v === "number" ? nf.format(t.v) : t.v));
@@ -1139,9 +1114,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var body = $("#asesoresBody");
     body.textContent = "";
     if (!m.asesores.length) {
-      body.appendChild(CFG.api
-        ? emptyState("Sin asesores activos", "El panel toma a los asesores activos del round robin (rr.asesores).")
-        : emptyState("Sin asesores en la hoja General", "Agrega los nombres en la columna A de la hoja General y aparecerán aquí."));
+      body.appendChild(emptyState("Sin asesores en la hoja General", "Agrega los nombres en la columna A de la hoja General y aparecerán aquí."));
       return;
     }
     var head = el("div", "arow-head eyebrow");
@@ -1209,77 +1182,8 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     return wrap;
   }
 
-  /* Grupo sin difusiones (por ejemplo, el que lee de Postgres): las tres
-   * gráficas se arman con la hoja de registros — ritmo diario, origen y
-   * campañas — en vez de quedarse vacías. */
-  function renderChartsRegistros(m) {
-    var HR = hojaConRol("registros");
-    var titulos = { botonBody: "Registros por día", atribBody: "Origen de los leads", difAsesorBody: "Registros por campaña" };
-    Object.keys(titulos).forEach(function (id) {
-      var h = $("#" + id).parentNode.querySelector(".panel-head h2");
-      if (h) h.textContent = titulos[id];
-    });
-    var notas = ["Últimos 14 días", "Atribución", "Top 8"];
-    Array.prototype.forEach.call(document.querySelectorAll("[data-periodo]"), function (n, i) {
-      n.textContent = notas[i] || "";
-    });
-
-    // Últimos 14 días, de más antiguo a más reciente.
-    var t = state.tabs[HR] || { header: [], rows: [] };
-    var cFecha = colIdx(t, /^fecha/i);
-    var porDia = {};
-    t.rows.forEach(function (r) {
-      var k = cFecha >= 0 ? esc(r[cFecha]).slice(0, 10) : "";
-      if (k) porDia[k] = (porDia[k] || 0) + 1;
-    });
-    var dias = [];
-    for (var i = 13; i >= 0; i--) {
-      var d = new Date(today().getTime() - i * 86400000);
-      dias.push({ label: dfDia.format(d), value: porDia[toISO(d)] || 0 });
-    }
-    var bb = $("#botonBody");
-    bb.textContent = "";
-    if (!t.rows.length) bb.appendChild(emptyState("Todavía no hay registros", "En cuanto entren registros al webinar verás aquí cuántos llegan cada día."));
-    else bb.appendChild(barList(dias, "var(--c1)", m.registros));
-
-    var atrib = countBy(HR, /^Atribuci[oó]n$/i);
-    var ab = $("#atribBody");
-    ab.textContent = "";
-    if (!atrib.length) ab.appendChild(emptyState("Sin datos de atribución", "Los registros aún no traen el origen del lead."));
-    else ab.appendChild(splitAtribucion(atrib));
-
-    var camp = countBy(HR, /^Campa/i);
-    var cb = $("#difAsesorBody");
-    cb.textContent = "";
-    if (!camp.length) cb.appendChild(emptyState("Sin campañas identificadas", "Los registros todavía no se cruzan con una campaña de pauta."));
-    else cb.appendChild(barList(camp.slice(0, 8), "var(--c3)", camp.reduce(function (s, x) { return s + x.value; }, 0)));
-  }
-
-  function splitAtribucion(atrib) {
-    var wrap = el("div");
-    var totalA = atrib.reduce(function (s, x) { return s + x.value; }, 0);
-    var palette = ["var(--c1)", "var(--c2)", "var(--c3)"];
-    var names = { ig: "Instagram", fb: "Facebook" };
-    var sp = el("div", "split");
-    var lg = el("div", "legend");
-    atrib.slice(0, 3).forEach(function (a, i) {
-      var label = names[a.label.toLowerCase()] || a.label;
-      var seg = el("i");
-      seg.style.width = ((a.value / totalA) * 100) + "%";
-      seg.style.background = palette[i];
-      seg.setAttribute("data-tip", label + " · " + nf.format(a.value) + " (" + nf1.format((a.value / totalA) * 100) + "%)");
-      if ((a.value / totalA) > 0.12) seg.textContent = nf1.format((a.value / totalA) * 100) + "%";
-      sp.appendChild(seg);
-      lg.appendChild(legendItem(palette[i], label + " · " + nf.format(a.value)));
-    });
-    wrap.appendChild(sp);
-    wrap.appendChild(lg);
-    return wrap;
-  }
-
   function renderCharts(m) {
     var HD = hojaConRol("difusiones");
-    if (!HD) return renderChartsRegistros(m);
     var per = (PERIODO.key && state.soloPeriodo) ? PERIODO.label : "Histórico completo";
     var notas = ["Hoja " + (HD || "Difusiones") + " · " + per, "Atribución · " + per, "Top 8 · " + per];
     Array.prototype.forEach.call(document.querySelectorAll("[data-periodo]"), function (n, i) {
@@ -1358,7 +1262,6 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     var form = CFG.formulario || s.form;
     if (form) add("Formulario", form, form);
     if (!PUBLICO && CFG.hoja) add("Hoja de cálculo", CFG.archivo || "Google Sheets", SHEET_URL);
-    if (CFG.api) add("Fuente de datos", CFG.fuenteNombre || "Postgres");
     if (CFG.pauta && CFG.pauta.url) {
       add("Videos en pauta", (s.videos && s.videos[0]) || CFG.pauta.nombre || "Carpeta de pauta", CFG.pauta.url);
     }
@@ -1535,7 +1438,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     $("#viewTitle").textContent = isPanel ? "Panel" : "Hoja · " + v;
     $("#viewSub").textContent = isPanel
       ? (CFG.archivo || CFG.titulo || "")
-      : (CFG.api ? "En vivo desde " + (CFG.fuenteNombre || "Postgres") : "Espejo en vivo de la pestaña “" + v + "”");
+      : "Espejo en vivo de la pestaña “" + v + "”";
     if (isPanel) { if (state.sheetCfg) renderPanel(); }
     else renderSheet();
     window.scrollTo(0, 0);
@@ -1550,11 +1453,6 @@ table.data tbody tr:hover td{background:var(--surface-2)}
     $("#viewSub").textContent = CFG.archivo || CFG.titulo || "";
     var link = $("#railSheetLink");
     if (CFG.hoja) link.href = SHEET_URL; else link.remove();
-    if (CFG.api) {
-      $("#railFoot").textContent = "Fuente única de datos: " + (CFG.fuenteNombre || "Postgres") +
-        ". Este panel solo la lee y se actualiza cada minuto.";
-      $("#navHojasTitulo").textContent = "Tablas";
-    }
     if (document.title && CFG.titulo) document.title = CFG.titulo;
 
     var nav = $("#nav");
@@ -1723,59 +1621,8 @@ table.data tbody tr:hover td{background:var(--surface-2)}
       .catch(function () { });
   }
 
-  /* Grupos que leen de Postgres: un endpoint de n8n devuelve los registros ya
-   * cruzados y los asesores activos. Aquí se convierten a las mismas "hojas"
-   * que da Google Sheets, para que el resto del panel no note la diferencia.
-   * La hoja General se arma con la lista de asesores y los datos de CFG.evento. */
-  function gridsDesdeApi(json) {
-    var ev = CFG.evento || {};
-    var metas = ev.metas || {};
-    var general = [["Año", "Objetivos sesgo", "Fecha de Inicio", "Fecha Webinar", "Objetivo Registros"]];
-    (json.asesores || []).filter(function (a) { return a.activo !== false; }).forEach(function (a, i) {
-      general.push([
-        esc(a.nombre),
-        metas[a.nombre] != null ? String(metas[a.nombre]) : "",
-        i === 0 ? esc(ev.fechaInicio) : "",
-        i === 0 ? esc(ev.fechaWebinar) : "",
-        i === 0 && ev.objetivo ? String(ev.objetivo) : ""
-      ]);
-    });
-    general[0][0] = esc(ev.anio || new Date().getFullYear());
-    var registros = [(json.columnas || []).map(esc)].concat((json.registros || []).map(function (r) {
-      return r.map(esc);
-    }));
-    var grids = {};
-    grids[hojaConRol("general") || "General"] = general;
-    grids[hojaConRol("registros") || "Registros"] = registros;
-    return grids;
-  }
-
-  function refrescarApi() {
-    setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo Postgres…");
-    fetch(CFG.api + (CFG.api.indexOf("?") >= 0 ? "&" : "?") + "_=" + Date.now(), { cache: "no-store" })
-      .then(function (r) {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(function (json) {
-        if (!json || !Array.isArray(json.registros)) throw new Error("respuesta sin registros");
-        // Cada asesor activo de rr.asesores se traduce por su ID de Kommo.
-        (json.asesores || []).forEach(function (a) { if (a.id) POR_ID[String(a.id)] = a.nombre; });
-        showBanner(null);
-        setStatus("live");
-        applyGrids(gridsDesdeApi(json), Date.now());
-      })
-      .catch(function (e) {
-        setStatus("error", state.sheetCfg ? "Dato anterior" : "Sin datos");
-        showBanner("warn", "No se pudo leer Postgres",
-          "El endpoint de n8n respondió: " + e.message + ". Revisa que el workflow “" + (CFG.fuenteNombre || "Panel webinar · datos") + "” esté activo.",
-          "Reintentar", refrescarWeb);
-      });
-  }
-
   function refrescarWeb() {
     revisarVersion();
-    if (CFG.api) return refrescarApi();
     setStatus("loading", state.sheetCfg ? "Actualizando…" : "Leyendo la hoja…");
     Promise.all(HOJAS.map(function (h) {
       return fetch(csvUrl(h.gid), { cache: "no-store" }).then(function (r) {
@@ -1832,8 +1679,7 @@ table.data tbody tr:hover td{background:var(--surface-2)}
 
   /* ── objetivos editables ───────────────────────────────────────── */
 
-  // Cada grupo guarda sus objetivos aparte: todos comparten el mismo dominio.
-  var LOCAL_KEY = CFG.claveLocal || "webinar-os-objetivos";
+  var LOCAL_KEY = "webinar-os-objetivos";
 
   function applyOverrides(o) {
     state.overrides = o && typeof o === "object" ? o : {};
