@@ -68,6 +68,33 @@ const GRUPOS = [
       { nombre: "Difusiones", gid: "972916596", rol: "difusiones" },
     ],
   },
+  {
+    id: "thepalms",
+    salida: "thepalms",
+    titulo: "Webinar The Palms",
+    marca: "TP",
+    subtitulo: "Fecha por confirmar",
+    archivo: "Postgres · Samuel Maya.17_webinar_smaya",
+    // Sin Google Sheets: un workflow de n8n lee Postgres y devuelve los
+    // registros ya cruzados con 02_entrada_leads_thepalms y rr.asesores.
+    api: "https://n8n-n8n.9qd6cz.easypanel.host/webhook/thepalms-webinar?k=686f057d04d53bd346401044",
+    fuenteNombre: "Postgres · 17_webinar_smaya",
+    etiquetaRegistros: "Registros al webinar",
+    claveLocal: "webinar-thepalms-objetivos",
+    // Objetivo y fechas del webinar. Las fechas van en dd/mm/aaaa y las metas
+    // por nombre del asesor tal como está en rr.asesores.
+    evento: {
+      anio: "2026",
+      objetivo: null,
+      fechaInicio: "",
+      fechaWebinar: "",
+      metas: {},
+    },
+    hojas: [
+      { nombre: "General", rol: "general" },
+      { nombre: "Registros", rol: "registros" },
+    ],
+  },
 ];
 
 module.exports = { GRUPOS };

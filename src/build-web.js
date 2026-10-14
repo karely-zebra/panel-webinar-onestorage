@@ -55,6 +55,12 @@ function construir(grupo, overrides, version) {
     excluirAsesores: grupo.excluirAsesores || [],
     asesoresPorId: grupo.asesoresPorId || {},
     hojas: grupo.hojas,
+    // Grupos que leen de Postgres por un endpoint de n8n en vez de Google Sheets.
+    api: grupo.api || "",
+    fuenteNombre: grupo.fuenteNombre || "",
+    evento: grupo.evento || null,
+    etiquetaRegistros: grupo.etiquetaRegistros || "",
+    claveLocal: grupo.claveLocal || "",
   };
 
   const web = {

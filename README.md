@@ -7,8 +7,10 @@ está en la raíz se publica en GitHub Pages.
 |---|---|---|
 | One Storage (Midstorage) | `/` | Registro Webinar One Storage \| WA |
 | GT (Grupo Tactical) | `/gt/` | Registro Webinar \| One Storage - GT |
+| The Palms | `/thepalms/` | Postgres `Samuel Maya.17_webinar_smaya` (vía n8n) |
 
 Cada página es un solo archivo estático. Lee las pestañas de su Google Sheets
+(o, en The Palms, un endpoint de n8n que consulta Postgres)
 directamente desde el navegador cada 60 segundos, por la exportación CSV de
 Google (que responde con `access-control-allow-origin: *`). No hay backend ni
 datos guardados aquí.
